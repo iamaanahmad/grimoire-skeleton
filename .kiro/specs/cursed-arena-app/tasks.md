@@ -1,0 +1,235 @@
+# Implementation Plan - Cursed Arena
+
+- [ ] 1. Set up project structure and configuration files
+  - Create `apps/cursed-arena` directory structure with config, src, scripts, and __tests__ folders
+  - Create `apps/cursed-arena/config/app.ts` with app name, default theme (nightmare_neon), and navigation configuration
+  - Create `apps/cursed-arena/src/styles/custom.css` file for app-specific styles
+  - _Requirements: 8.1, 8.2_
+
+- [ ] 2. Define entity configurations
+  - [ ] 2.1 Create entity definitions file at `apps/cursed-arena/config/entities.ts`
+    - Define tournament entity with all fields (name, game, startDate, endDate, prizePool, status, maxTeams, description)
+    - Define team entity with all fields (name, tag, logo, membersCount, region)
+    - Define player entity with all fields (gamertag, realName, team, role, country)
+    - Define match entity with all fields (tournament, teamA, teamB, scoreA, scoreB, status, scheduledTime, round)
+    - Export entity registry object containing all four entities
+    - _Requirements: 1.1, 2.1, 3.1, 4.1, 9.1_
+
+- [ ] 3. Generate entity modules using entity generator
+  - [ ] 3.1 Run entity generator for tournament entity
+    - Generate TypeScript types for Tournament interface
+    - Generate list page component at `apps/cursed-arena/src/app/tournaments/page.tsx`
+    - Generate create/edit form component
+    - Generate API routes for CRUD operations
+    - _Requirements: 1.1, 1.2, 1.3, 9.2, 9.3, 9.4, 9.5_
+  
+  - [ ] 3.2 Run entity generator for team entity
+    - Generate TypeScript types for Team interface
+    - Generate list page component at `apps/cursed-arena/src/app/teams/page.tsx`
+    - Generate create/edit form component
+    - Generate API routes for CRUD operations
+    - _Requirements: 2.1, 2.2, 2.3, 9.2, 9.3, 9.4, 9.5_
+  
+  - [ ] 3.3 Run entity generator for player entity
+    - Generate TypeScript types for Player interface
+    - Generate list page component at `apps/cursed-arena/src/app/players/page.tsx`
+    - Generate create/edit form component with team reference dropdown
+    - Generate API routes for CRUD operations
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 9.2, 9.3, 9.4, 9.5_
+  
+  - [ ] 3.4 Run entity generator for match entity
+    - Generate TypeScript types for Match interface
+    - Generate list page component at `apps/cursed-arena/src/app/matches/page.tsx`
+    - Generate create/edit form component with tournament and team reference dropdowns
+    - Generate API routes for CRUD operations
+    - _Requirements: 4.1, 4.2, 4.3, 9.2, 9.3, 9.4, 9.5_
+
+- [ ] 4. Implement custom dashboard page
+  - [ ] 4.1 Create dashboard page component at `apps/cursed-arena/src/app/page.tsx`
+    - Implement data fetching for upcoming tournaments (next 5, sorted by startDate)
+    - Implement data fetching for live matches (status === 'live')
+    - Implement data fetching for statistics (total tournaments, teams, players)
+    - Create stats cards section displaying total counts
+    - Create upcoming tournaments section using TournamentCard components
+    - Create live matches section with match cards
+    - Apply glitch hover effects to all cards
+    - Ensure responsive layout (3 columns desktop, 1 column mobile)
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 11.1, 11.2, 11.3_
+
+- [ ] 5. Implement TournamentCard custom component
+  - [ ] 5.1 Create TournamentCard component at `apps/cursed-arena/src/components/TournamentCard.tsx`
+    - Create component interface accepting tournament prop and onClick handler
+    - Implement arcade cabinet aesthetic with angled corners using clip-path
+    - Display tournament name, game, start date, and prize pool
+    - Add neon border glow effect using box-shadow with theme colors
+    - Implement glitch animation on hover using CSS transforms
+    - Add click handler to navigate to tournament detail page
+    - Ensure responsive design for mobile, tablet, and desktop
+    - Add ARIA labels for accessibility
+    - _Requirements: 8.2, 8.3, 8.4, 11.1, 11.2, 11.3, 12.2_
+
+- [ ] 6. Implement custom tournament detail page
+  - [ ] 6.1 Create tournament detail page at `apps/cursed-arena/src/app/tournaments/[id]/page.tsx`
+    - Implement data fetching for tournament by ID
+    - Implement data fetching for matches filtered by tournament ID
+    - Implement data fetching for participating teams
+    - Create tournament header section displaying name, game, dates, prize pool, status, and description
+    - Add edit and delete action buttons
+    - Create matches section displaying matches grouped by round
+    - Create participating teams section displaying team cards
+    - Integrate BracketView component for tournament bracket visualization
+    - Ensure responsive layout
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 11.1, 11.2, 11.3_
+
+- [ ] 7. Implement BracketView custom component
+  - [ ] 7.1 Create BracketView component at `apps/cursed-arena/src/components/BracketView.tsx`
+    - Create component interface accepting tournament and matches props
+    - Implement logic to group matches by round field
+    - Define round order array (Quarter Finals, Semi Finals, Finals)
+    - Render matches in text-based format grouped by round
+    - Display team names and scores for each match
+    - Highlight winning team when match status is completed
+    - Ensure responsive layout for all screen sizes
+    - Add keyboard navigation support
+    - Add ARIA labels and roles for screen reader accessibility
+    - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 11.4, 11.5, 12.1, 12.2_
+
+- [ ] 8. Implement custom team detail page
+  - [ ] 8.1 Create team detail page at `apps/cursed-arena/src/app/teams/[id]/page.tsx`
+    - Implement data fetching for team by ID
+    - Implement data fetching for players filtered by team ID
+    - Implement data fetching for matches where team is teamA or teamB
+    - Create team header section displaying name, tag, logo, region, and members count
+    - Display team logo image if logo URL is provided
+    - Add edit and delete action buttons
+    - Create roster section displaying list of players
+    - Create match history section displaying team's matches
+    - Ensure responsive layout
+    - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 11.1, 11.2, 11.3_
+
+- [ ] 9. Implement MatchScoreUpdater custom component
+  - [ ] 9.1 Create MatchScoreUpdater component at `apps/cursed-arena/src/components/MatchScoreUpdater.tsx`
+    - Create component interface accepting match prop and onUpdate callback
+    - Implement local state for scoreA and scoreB using useState
+    - Create increment button for team A score
+    - Create decrement button for team A score (disabled when score is 0)
+    - Create increment button for team B score
+    - Create decrement button for team B score (disabled when score is 0)
+    - Display current scores for both teams
+    - Create save button that calls onUpdate callback
+    - Implement loading state during save operation
+    - Display live indicator when match status is "live"
+    - Implement error handling with score reversion on failure
+    - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5_
+
+- [ ] 10. Implement form validation
+  - [ ] 10.1 Add validation logic to generated form components
+    - Implement tournament name length validation (3-100 characters)
+    - Implement prize pool minimum validation (>= 0)
+    - Implement max teams range validation (2-64)
+    - Implement team tag length validation (2-5 characters)
+    - Implement player gamertag length validation (2-30 characters)
+    - Implement match score minimum validation (>= 0)
+    - Display field-specific error messages adjacent to invalid inputs
+    - Prevent form submission when validation fails
+    - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5_
+
+- [ ] 11. Implement custom styles and animations
+  - [ ] 11.1 Add arcade cabinet card styles to `apps/cursed-arena/src/styles/custom.css`
+    - Create .arcade-card class with clip-path for angled corners
+    - Add neon glow box-shadow using CSS variables for theme colors
+    - Create @keyframes glitch animation with transform translations
+    - Apply glitch animation on .arcade-card:hover
+    - Create .neon-glow class with text-shadow effects
+    - Create @keyframes pulse animation for live indicator
+    - Apply pulse animation to .live-indicator class
+    - Ensure animations respect prefers-reduced-motion media query
+    - _Requirements: 8.2, 8.3, 8.4, 12.5_
+
+- [ ] 12. Implement Appwrite collections and permissions
+  - [ ] 12.1 Create Appwrite collections for all entities
+    - Create tournaments collection with attributes matching entity fields
+    - Create teams collection with attributes matching entity fields
+    - Create players collection with attributes matching entity fields
+    - Create matches collection with attributes matching entity fields
+    - Add indexes for startDate and status on tournaments collection
+    - Add indexes for name and region on teams collection
+    - Add index for team on players collection
+    - Add indexes for tournament, status, and scheduledTime on matches collection
+    - Configure read/write permissions for admin and staff roles on all collections
+    - _Requirements: 1.1, 2.1, 3.1, 4.1_
+
+- [ ] 13. Create seed data script
+  - [ ] 13.1 Implement seed script at `apps/cursed-arena/scripts/seed.ts`
+    - Create function to generate sample tournaments with realistic data
+    - Create function to generate sample teams with names, tags, and regions
+    - Create function to generate sample players with gamertags and team assignments
+    - Create function to generate sample matches with tournament and team references
+    - Implement main seed function that calls all generation functions in order
+    - Add error handling and logging
+    - Make script idempotent (can run multiple times without duplicating data)
+    - Add command to package.json to run seed script
+    - _Requirements: 1.1, 2.1, 3.1, 4.1_
+
+- [ ] 14. Implement performance optimizations
+  - [ ] 14.1 Add lazy loading and caching
+    - Implement dynamic import for BracketView component with loading skeleton
+    - Add revalidate export to tournament list page for 5-minute cache
+    - Implement Next.js Image component for team logos with lazy loading
+    - Create skeleton loader components for dashboard cards
+    - Add loading states to all data fetching operations
+    - Implement optimistic UI updates for match score changes
+    - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5_
+
+- [ ] 15. Implement accessibility features
+  - [ ] 15.1 Add accessibility attributes and keyboard navigation
+    - Add ARIA labels to all form inputs in generated forms
+    - Add ARIA labels to all buttons and interactive elements
+    - Add alt text to all images (team logos, icons)
+    - Ensure all interactive elements are keyboard accessible
+    - Add visible focus indicators to all focusable elements
+    - Implement skip-to-content link on all pages
+    - Test with screen reader and fix any issues
+    - Add prefers-reduced-motion media query to disable animations when requested
+    - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
+
+- [ ]* 16. Write end-to-end tests
+  - [ ]* 16.1 Create E2E test file at `apps/cursed-arena/__tests__/e2e.test.ts`
+    - Write test for creating a tournament with valid data
+    - Write test for creating two teams
+    - Write test for creating players and assigning to teams
+    - Write test for creating a match between two teams
+    - Write test for updating match scores using MatchScoreUpdater
+    - Write test for viewing bracket and verifying winner display
+    - Write test for navigating to tournament detail page
+    - Write test for navigating to team detail page
+    - _Requirements: 1.2, 2.2, 3.2, 4.2, 14.4_
+
+- [ ] 17. Create README documentation
+  - [ ] 17.1 Write README at `apps/cursed-arena/README.md`
+    - Add introduction explaining what Cursed Arena is
+    - Add features list covering all main functionality
+    - Add installation instructions
+    - Add instructions for running the application
+    - Add instructions for running the seed script
+    - Add instructions for running tests
+    - Add section on entity configuration
+    - Add section on theme customization
+    - Add screenshots of key pages (dashboard, tournament detail, bracket view)
+    - _Requirements: 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1_
+
+- [ ] 18. Final polish and testing
+  - [ ] 18.1 Perform final quality checks
+    - Test all pages with nightmare_neon theme applied
+    - Test all pages with bone_minimal theme to ensure compatibility
+    - Test all pages with blood_moon theme to ensure compatibility
+    - Verify all CRUD operations work correctly for all entities
+    - Verify dashboard displays correct data
+    - Verify tournament detail page shows matches and bracket correctly
+    - Verify team detail page shows roster and match history correctly
+    - Test responsive layout on mobile, tablet, and desktop screen sizes
+    - Run accessibility audit and fix any issues
+    - Verify all animations are smooth and respect prefers-reduced-motion
+    - Check page load times and optimize if needed
+    - Fix any visual inconsistencies or bugs
+    - _Requirements: 8.1, 8.5, 11.1, 11.2, 11.3, 11.4, 11.5, 12.1, 12.2, 12.3, 12.4, 12.5, 13.1_

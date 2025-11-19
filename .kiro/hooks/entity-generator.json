@@ -1,0 +1,11 @@
+{
+  "name": "Entity Generator",
+  "description": "Automatically generates TypeScript types, components, and API routes when a new entity config is created",
+  "trigger": {
+    "type": "onFileSave",
+    "pattern": "**/config/entities/**/*.ts"
+  },
+  "enabled": true,
+  "prompt": "A new entity configuration file has been saved at {{filePath}}.\n\nPlease analyze the entity definition and generate the following:\n\n1. **TypeScript Types** in `/src/modules/{{entityName}}/types.ts`:\n   - Interface for the entity with all fields\n   - Create/Update DTOs\n   - Filter/Query types\n\n2. **List Page Component** in `/src/modules/{{entityName}}/list.tsx`:\n   - Table with columns from display.listColumns\n   - Filters for enum fields\n   - Search for string fields\n   - Pagination (20 items per page)\n   - \"Summon New {{EntityName}}\" button\n   - Row actions based on features\n\n3. **Form Component** in `/src/modules/{{entityName}}/form.tsx`:\n   - All fields with appropriate input types\n   - Validation from field definitions\n   - Submit button: \"Cast {{EntityName}}\" for create, \"Enchant {{EntityName}}\" for edit\n\n4. **Detail View Component** in `/src/modules/{{entityName}}/detail.tsx`:\n   - Card layout with all fields\n   - Action buttons based on permissions\n\n5. **API Routes**:\n   - `/src/app/api/{{entityName}}/route.ts` (GET list, POST create)\n   - `/src/app/api/{{entityName}}/[id]/route.ts` (GET, PATCH, DELETE)\n\n6. **Update Navigation Config** in `/src/config/navigation.ts`:\n   - Add new entity to sidebar navigation\n\nFollow the entity-system-guide.md steering document for implementation details. Use the spooky terminology from ui-design-system.md. Ensure all generated code is TypeScript with proper types and JSDoc comments.",
+  "autoApprove": false
+}

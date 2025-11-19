@@ -1,0 +1,11 @@
+{
+  "name": "Component Documentation",
+  "description": "Ensures components have proper JSDoc comments, prop documentation, and accessibility attributes",
+  "trigger": {
+    "type": "onFileSave",
+    "pattern": "**/components/**/*.tsx"
+  },
+  "enabled": true,
+  "prompt": "A component file has been saved at {{filePath}}.\n\nPlease review and enhance the component documentation:\n\n1. **JSDoc Comments**:\n   - Ensure the component has a JSDoc comment explaining its purpose\n   - Document all props with @param tags\n   - Add @example usage if the component is complex\n   - Include @returns description\n\n2. **Props Interface**:\n   - Verify TypeScript interface exists for props\n   - Check that all props have type annotations\n   - Add JSDoc comments to each prop in the interface\n   - Mark optional props clearly\n\n3. **Accessibility Check**:\n   - Verify interactive elements have proper ARIA attributes\n   - Check for alt text on images\n   - Ensure form inputs have associated labels\n   - Verify keyboard navigation support\n   - Check for focus management\n\n4. **Component README**:\n   - If this is a reusable core component, check if `/src/core/components/README.md` documents it\n   - If not documented, add an entry with:\n     - Component name and purpose\n     - Props table (auto-generated from interface)\n     - Usage example\n     - Accessibility notes\n\n5. **Code Quality**:\n   - Check component length (should be under 200 lines)\n   - Verify no console.logs remain\n   - Ensure imports are organized\n   - Check for unused variables\n\nProvide a summary of:\n- Documentation completeness score (0-100%)\n- Missing documentation items\n- Accessibility issues found\n- Suggestions for improvement\n\nIf critical documentation is missing, offer to add it.",
+  "autoApprove": false
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Theme Validator",
+  "description": "Validates theme files for contrast ratios, CSS variable naming, and accessibility compliance",
+  "trigger": {
+    "type": "onFileSave",
+    "pattern": "**/theme/**/*.{css,scss,ts,tsx}"
+  },
+  "enabled": true,
+  "prompt": "A theme file has been saved at {{filePath}}.\n\nPlease perform the following validations:\n\n1. **Contrast Ratio Check**:\n   - Verify all text/background combinations meet WCAG AA (4.5:1 minimum)\n   - Check accent colors against backgrounds\n   - Report any failing combinations with suggestions\n\n2. **CSS Variable Validation**:\n   - Ensure all CSS variables follow naming convention: --{category}-{name}\n   - Check that all required theme variables are defined:\n     - Background: --bg-primary, --bg-secondary, --bg-tertiary\n     - Text: --text-primary, --text-secondary, --text-tertiary\n     - Accent: --accent-primary, --accent-secondary, --accent-glow\n   - Verify no duplicate variable names\n\n3. **Animation Performance**:\n   - Check that animations only use transform and opacity (for performance)\n   - Verify prefers-reduced-motion media query is respected\n   - Ensure animation durations are reasonable (100ms-500ms)\n\n4. **Accessibility**:\n   - Check for sufficient color contrast\n   - Verify focus states are visible\n   - Ensure interactive elements have hover states\n\n5. **Documentation**:\n   - Update theme documentation if new variables are added\n   - Add usage examples for new theme features\n\nReport findings in a clear format with:\n- ✅ Passed checks\n- ⚠️ Warnings (non-critical issues)\n- ❌ Errors (must fix)\n\nIf errors are found, suggest fixes but don't auto-apply them.",
+  "autoApprove": false
+}

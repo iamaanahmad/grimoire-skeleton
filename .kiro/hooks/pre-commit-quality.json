@@ -1,0 +1,10 @@
+{
+  "name": "Pre-Commit Quality Check",
+  "description": "Manual hook to run before commits - checks TypeScript, formatting, and code quality",
+  "trigger": {
+    "type": "manual"
+  },
+  "enabled": true,
+  "prompt": "Running pre-commit quality checks across the codebase.\n\nPlease perform the following checks:\n\n1. **TypeScript Compilation**:\n   - Run `npm run type-check` or equivalent\n   - Report any type errors with file locations\n   - Suggest fixes for common type issues\n\n2. **Code Formatting**:\n   - Check if all files are formatted with Prettier\n   - Identify files that need formatting\n   - Offer to format them\n\n3. **Code Quality**:\n   - Search for console.log statements (should be removed)\n   - Check for TODO/FIXME comments (list them)\n   - Look for any 'any' types (should be avoided)\n   - Verify no unused imports\n\n4. **Import Validation**:\n   - Check that all imports resolve correctly\n   - Look for circular dependencies\n   - Verify relative imports use correct paths\n\n5. **Test Coverage** (if tests exist):\n   - Check if new components have corresponding tests\n   - Report test coverage percentage\n   - Identify untested files\n\n6. **Documentation**:\n   - Verify README.md is up to date\n   - Check that new features are documented\n   - Ensure CHANGELOG.md is updated (if it exists)\n\n7. **Git Status**:\n   - List staged files\n   - Check for large files (>1MB)\n   - Verify .kiro directory is NOT in .gitignore\n\nProvide a commit readiness report:\n- ✅ Ready to commit (all checks passed)\n- ⚠️ Warnings (can commit but should address)\n- ❌ Blocking issues (must fix before commit)\n\nIf blocking issues exist, offer to fix them automatically.",
+  "autoApprove": false
+}
