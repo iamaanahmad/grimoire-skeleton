@@ -25,33 +25,37 @@ Theme Switch → Update CSS variables → Instant visual update
 ### System Components
 
 **Type Layer:**
+
 - ThemeDefinition interface
 - ColorPalette interface
 - AnimationConfig interface
 - EffectConfig interface
 
 **Theme Layer:**
+
 - Individual theme definitions (nightmare_neon, bone_minimal, blood_moon)
 - Theme registry for centralized access
 - Default theme configuration
 
 **Runtime Layer:**
+
 - ThemeContext for React state management
 - ThemeProvider component
 - useTheme hook for component access
 - CSS variable injection system
 
 **UI Layer:**
+
 - ThemeSwitcher component
 - SkeletonLoader component
 - Theme-aware core components
 
 **Utility Layer:**
+
 - CSS generator for converting themes to CSS
 - Contrast checker for accessibility validation
 - localStorage persistence
 - SSR compatibility helpers
-
 
 ## Components and Interfaces
 

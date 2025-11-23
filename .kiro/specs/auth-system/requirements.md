@@ -31,7 +31,6 @@ This document defines the requirements for the Authentication and Authorization 
 4. WHEN registration fails, THE Authentication System SHALL display clear error messages
 5. THE Authentication System SHALL validate email format and password strength before submission
 
-
 ### Requirement 2
 
 **User Story:** As a user, I want to log in with my email and password, so that I can access my account and protected features.

@@ -19,15 +19,15 @@ const REQUIRED_SERVER_ENV_VARS = ['APPWRITE_API_KEY'] as const;
 
 /**
  * Validates that all required environment variables are present
- * 
+ *
  * @throws {Error} If any required environment variables are missing
  * @param includeServerVars - Whether to validate server-side variables (default: false)
- * 
+ *
  * @example
  * ```typescript
  * // In client-side code
  * validateEnv();
- * 
+ *
  * // In server-side code (API routes, server components)
  * validateEnv(true);
  * ```

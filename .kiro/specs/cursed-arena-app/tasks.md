@@ -1,7 +1,7 @@
 # Implementation Plan - Cursed Arena
 
 - [ ] 1. Set up project structure and configuration files
-  - Create `apps/cursed-arena` directory structure with config, src, scripts, and __tests__ folders
+  - Create `apps/cursed-arena` directory structure with config, src, scripts, and **tests** folders
   - Create `apps/cursed-arena/config/app.ts` with app name, default theme (nightmare_neon), and navigation configuration
   - Create `apps/cursed-arena/src/styles/custom.css` file for app-specific styles
   - _Requirements: 8.1, 8.2_
@@ -22,21 +22,18 @@
     - Generate create/edit form component
     - Generate API routes for CRUD operations
     - _Requirements: 1.1, 1.2, 1.3, 9.2, 9.3, 9.4, 9.5_
-  
   - [ ] 3.2 Run entity generator for team entity
     - Generate TypeScript types for Team interface
     - Generate list page component at `apps/cursed-arena/src/app/teams/page.tsx`
     - Generate create/edit form component
     - Generate API routes for CRUD operations
     - _Requirements: 2.1, 2.2, 2.3, 9.2, 9.3, 9.4, 9.5_
-  
   - [ ] 3.3 Run entity generator for player entity
     - Generate TypeScript types for Player interface
     - Generate list page component at `apps/cursed-arena/src/app/players/page.tsx`
     - Generate create/edit form component with team reference dropdown
     - Generate API routes for CRUD operations
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 9.2, 9.3, 9.4, 9.5_
-  
   - [ ] 3.4 Run entity generator for match entity
     - Generate TypeScript types for Match interface
     - Generate list page component at `apps/cursed-arena/src/app/matches/page.tsx`
@@ -193,8 +190,8 @@
     - Add prefers-reduced-motion media query to disable animations when requested
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
 
-- [ ]* 16. Write end-to-end tests
-  - [ ]* 16.1 Create E2E test file at `apps/cursed-arena/__tests__/e2e.test.ts`
+- [ ]\* 16. Write end-to-end tests
+  - [ ]\* 16.1 Create E2E test file at `apps/cursed-arena/__tests__/e2e.test.ts`
     - Write test for creating a tournament with valid data
     - Write test for creating two teams
     - Write test for creating players and assigning to teams

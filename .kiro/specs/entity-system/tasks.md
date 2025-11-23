@@ -1,7 +1,9 @@
 # Implementation Plan - Entity System Core
 
 ## Prerequisites
+
 This spec requires the project-setup spec to be completed first. Ensure the following exist before starting:
+
 - Next.js project with TypeScript and Tailwind configured
 - src/core, src/modules, src/config directory structure
 - Path aliases configured (@/core, @/modules, @/config)
@@ -20,8 +22,7 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Define Role type as union of 'admin', 'staff', 'user'
     - Add JSDoc comments explaining each interface and type
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
-  
-  - [ ]* 1.2 Verify type definitions compile without errors
+  - [ ]\* 1.2 Verify type definitions compile without errors
     - Run type-check to ensure no TypeScript errors
     - _Requirements: 16.5_
 
@@ -38,7 +39,7 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Use Prettier to format generated code
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 16.1, 16.2_
 
-  - [ ]* 2.2 Test type generator with sample entity
+  - [ ]\* 2.2 Test type generator with sample entity
     - Create a test entity definition
     - Run type generator and verify output
     - Check that generated TypeScript is valid
@@ -52,7 +53,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Create src/core/components/ActionButtons.tsx with onView, onEdit, onDelete optional props
     - Style components with Tailwind and spooky theme
     - _Requirements: 3.5_
-  
   - [ ] 3.2 Create src/core/components/EntityTable.tsx
     - Create generic TypeScript component with type parameter T extends { id: string }
     - Define Column<T> interface with key, label, sortable, render properties
@@ -68,7 +68,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Conditionally render EmptyState when data is empty
     - Render Pagination component at bottom
     - _Requirements: 3.1, 3.2, 3.3, 3.4_
-  
   - [ ] 3.3 Make table responsive and accessible
     - Add Tailwind responsive classes (hidden on mobile, show on md+)
     - Create mobile card view for small screens (stack fields vertically)
@@ -78,9 +77,8 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Add focus management with visible focus indicators
     - Ensure screen reader compatibility with proper table semantics
     - _Requirements: 15.1, 15.2, 15.3, 15.4_
-  
-  - [ ]* 3.4 Test table performance with large datasets
-    - Create src/core/components/__tests__/EntityTable.test.tsx
+  - [ ]\* 3.4 Test table performance with large datasets
+    - Create src/core/components/**tests**/EntityTable.test.tsx
     - Test with 1000+ items array
     - Verify pagination limits rendered items
     - Verify sorting works correctly
@@ -97,7 +95,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Implement handleBlur function to validate on blur
     - Implement handleSubmit function with full validation
     - _Requirements: 4.1, 4.2, 4.3, 4.4_
-  
   - [ ] 4.2 Create FieldInput component for rendering field types
     - Create component that renders appropriate input based on field type
     - Implement text input for string fields
@@ -107,20 +104,17 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Implement checkbox for boolean fields
     - Implement ReferenceSelect for reference fields (placeholder for now)
     - _Requirements: 4.2_
-  
   - [ ] 4.3 Add form validation and error display
     - Display error messages below each field
     - Add ARIA attributes for error announcements
     - Style error states clearly
     - Clear errors when user corrects input
     - _Requirements: 4.3, 15.4_
-  
   - [ ] 4.4 Add submit button with loading state
     - Create submit button with spooky text ("Summon" for create, "Enchant" for edit)
     - Disable button during submission
     - Show loading indicator during submission
     - _Requirements: 4.4_
-  
   - [ ] 4.5 Add accessibility features to form
     - Associate labels with inputs using htmlFor
     - Add required field indicators
@@ -140,8 +134,7 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Implement custom validator support
     - Return user-friendly error messages
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
-  
-  - [ ]* 5.2 Write unit tests for validators
+  - [ ]\* 5.2 Write unit tests for validators
     - Test required field validation
     - Test string length validation
     - Test number range validation
@@ -164,8 +157,7 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Generate delete handler if delete feature is enabled
     - Use Prettier to format generated code
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 9.2, 9.3, 16.1, 16.2, 16.3, 16.4_
-  
-  - [ ]* 6.2 Test list page generator
+  - [ ]\* 6.2 Test list page generator
     - Generate a list page for a test entity
     - Verify generated code is valid TypeScript
     - Check that all features are correctly included/excluded
@@ -185,8 +177,7 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Generate EntityForm with appropriate props
     - Use Prettier to format generated code
     - _Requirements: 4.1, 4.4, 4.5, 9.2, 9.3, 16.1, 16.2, 16.3, 16.4_
-  
-  - [ ]* 7.2 Test form page generator
+  - [ ]\* 7.2 Test form page generator
     - Generate a form page for a test entity
     - Verify generated code is valid TypeScript
     - Check both create and edit modes are handled
@@ -207,8 +198,7 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Generate error state handling
     - Use Prettier to format generated code
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 9.2, 9.3, 16.1, 16.2, 16.3, 16.4_
-  
-  - [ ]* 8.2 Test detail page generator
+  - [ ]\* 8.2 Test detail page generator
     - Generate a detail page for a test entity
     - Verify generated code is valid TypeScript
     - Check that formatting logic is correct
@@ -220,7 +210,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Implement generateListRoute function for GET and POST operations
     - Implement generateDetailRoute function for GET, PATCH, DELETE operations
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
-  
   - [ ] 9.2 Implement list route generation (GET)
     - Generate code to parse query parameters (page, limit, sortBy, sortOrder)
     - Generate code to build Appwrite Query array
@@ -231,7 +220,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Generate response with data, total, page, limit
     - Generate error handling with appropriate status codes
     - _Requirements: 6.2, 6.4_
-  
   - [ ] 9.3 Implement list route generation (POST)
     - Generate code to parse request body
     - Generate validation for required fields
@@ -239,20 +227,17 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Generate response with created document and 201 status
     - Generate error handling with validation messages
     - _Requirements: 6.3, 6.4_
-  
   - [ ] 9.4 Implement detail route generation (GET, PATCH, DELETE)
     - Generate GET handler to fetch single document by ID
     - Generate PATCH handler to update document with validation
     - Generate DELETE handler to remove document
     - Generate appropriate error responses (404, 400, 500)
     - _Requirements: 6.1, 6.3, 6.4, 6.5_
-  
   - [ ] 9.5 Format generated API routes
     - Use Prettier to format all generated route code
     - Add JSDoc comments to generated functions
     - _Requirements: 16.1, 16.2, 16.3, 16.4_
-  
-  - [ ]* 9.6 Test API route generator
+  - [ ]\* 9.6 Test API route generator
     - Generate API routes for a test entity
     - Verify generated code is valid TypeScript
     - Check that all CRUD operations are included
@@ -267,8 +252,7 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Implement discover method to auto-load entities from config directory
     - Export singleton instance of EntityRegistry
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5_
-  
-  - [ ]* 10.2 Test entity registry
+  - [ ]\* 10.2 Test entity registry
     - Test registering and retrieving entities
     - Test auto-discovery functionality
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5_
@@ -279,7 +263,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Define NavigationItem with label, icon, href, children properties
     - Export navigation array with initial items (Dashboard, Settings)
     - _Requirements: 11.6_
-  
   - [ ] 11.2 Create src/core/lib/navigation-updater.ts
     - Implement updateNavigation function with signature (entityName: string, entityDef: EntityDefinition)
     - Read src/core/config/navigation.ts file using fs.readFileSync
@@ -291,9 +274,8 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Handle case where navigation file doesn't exist (create it with template)
     - Add error handling for file read/write operations
     - _Requirements: 11.6_
-  
-  - [ ]* 11.3 Test navigation updater
-    - Create src/core/lib/__tests__/navigation-updater.test.ts
+  - [ ]\* 11.3 Test navigation updater
+    - Create src/core/lib/**tests**/navigation-updater.test.ts
     - Test adding entity to empty navigation array
     - Test adding entity to existing navigation with items
     - Verify formatting is preserved (run prettier on result)
@@ -305,14 +287,12 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Install prettier as dependency (for code formatting)
     - Install @types/node if not already present
     - _Requirements: 16.1_
-  
   - [ ] 12.2 Create file writing utilities
     - Create scripts/lib/file-utils.ts
     - Implement ensureDirectory function to create directories if they don't exist
     - Implement writeFile function with proper error handling
     - Implement readFile function for reading entity definitions
     - _Requirements: 11.3, 11.4, 11.5_
-  
   - [ ] 12.3 Create scripts/generate-entity.ts
     - Parse command line arguments to get entity name
     - Import entity definition from src/config/entities directory
@@ -326,13 +306,11 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Log success message with list of created files
     - Handle errors gracefully with clear messages
     - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7_
-  
-  - [ ]* 12.4 Create example entity definition
+  - [ ]\* 12.4 Create example entity definition
     - Create src/config/entities/example.ts with a sample entity
     - Use this to test the generator
     - _Requirements: 11.1_
-  
-  - [ ]* 12.5 Test CLI generator end-to-end
+  - [ ]\* 12.5 Test CLI generator end-to-end
     - Run npm run generate:entity example
     - Verify all expected files are created in correct locations
     - Verify navigation is updated
@@ -353,7 +331,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Make component accessible with ARIA attributes (aria-label, aria-expanded, role="combobox")
     - Add keyboard navigation support (arrow keys, enter, escape)
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 15.1, 15.2, 15.3_
-  
   - [ ] 13.2 Create FieldInput component
     - Create src/core/components/FieldInput.tsx
     - Accept props: fieldName, fieldDef, value, onChange, onBlur, error
@@ -367,9 +344,8 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Pass appropriate props to each input type
     - Add proper labels and error display
     - _Requirements: 4.2, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
-  
-  - [ ]* 13.3 Test reference select component
-    - Create src/core/components/__tests__/ReferenceSelect.test.tsx
+  - [ ]\* 13.3 Test reference select component
+    - Create src/core/components/**tests**/ReferenceSelect.test.tsx
     - Test rendering with mock data
     - Test search functionality filters options
     - Test error handling displays error message
@@ -385,7 +361,6 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Handle large datasets efficiently (process in chunks if needed for 1000+ items)
     - Add proper MIME types (text/csv, application/json)
     - _Requirements: 14.1, 14.2, 14.4_
-  
   - [ ] 14.2 Add export button to list page generator
     - Update src/core/generators/list-generator.ts
     - Add import for export functions when 'export' feature is enabled
@@ -394,9 +369,8 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Generate handleExport function that calls exportToCSV or exportToJSON with current data
     - Use spooky button text like "Banish to CSV" or "Summon JSON"
     - _Requirements: 14.3_
-  
-  - [ ]* 14.3 Test export functionality
-    - Create src/core/lib/__tests__/export.test.ts
+  - [ ]\* 14.3 Test export functionality
+    - Create src/core/lib/**tests**/export.test.ts
     - Test CSV export with string, number, date, boolean fields
     - Test CSV escaping (commas, quotes, newlines in data)
     - Test JSON export produces valid JSON
@@ -404,8 +378,8 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Verify file download is triggered (mock URL.createObjectURL)
     - _Requirements: 14.1, 14.2, 14.4, 14.5_
 
-- [ ]* 15. Create integration tests
-  - [ ]* 15.1 Create src/core/__tests__/entity-system.test.ts
+- [ ]\* 15. Create integration tests
+  - [ ]\* 15.1 Create src/core/**tests**/entity-system.test.ts
     - Write test for type generation with various field types
     - Write test for component generation (list, form, detail)
     - Write test for API route generation
@@ -414,14 +388,12 @@ This spec requires the project-setup spec to be completed first. Ensure the foll
     - Write test for permissions enforcement
     - Write test for feature flags (enabled/disabled features)
     - _Requirements: 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 8.1, 9.1, 12.1_
-  
-  - [ ]* 15.2 Set up test fixtures and mocks
+  - [ ]\* 15.2 Set up test fixtures and mocks
     - Create sample entity definitions for testing
     - Create mock Appwrite client
     - Create test utilities for file system operations
     - _Requirements: 1.1, 2.1, 3.1, 4.1, 5.1, 6.1_
-  
-  - [ ]* 15.3 Run tests and verify coverage
+  - [ ]\* 15.3 Run tests and verify coverage
     - Execute all tests
     - Generate coverage report
     - Ensure coverage is above 80%

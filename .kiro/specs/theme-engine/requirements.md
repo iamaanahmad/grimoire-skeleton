@@ -31,7 +31,6 @@ This document defines the requirements for the Theme Engine, a flexible theming 
 4. WHEN a theme is applied, THE Theme Engine SHALL update all visual elements within 100 milliseconds
 5. THE Theme Engine SHALL make each theme visually distinct with unique color palettes and effects
 
-
 ### Requirement 2
 
 **User Story:** As a user, I want my theme preference to persist across sessions, so that I don't have to reselect my theme every time I visit.
@@ -115,7 +114,6 @@ This document defines the requirements for the Theme Engine, a flexible theming 
 3. THE Theme Engine SHALL provide a function to list all available themes
 4. THE Theme Engine SHALL provide a function to get the default theme
 5. THE Theme Engine SHALL validate theme definitions when they are registered
-
 
 ### Requirement 9
 

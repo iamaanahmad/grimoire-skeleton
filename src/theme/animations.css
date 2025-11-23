@@ -1,0 +1,284 @@
+/**
+ * Theme Animations
+ *
+ * Spooky animation keyframes for all Grimoire themes.
+ * All animations use only transform and opacity for 60fps performance.
+ * Respects prefers-reduced-motion for accessibility.
+ */
+
+/* ==========================================================================
+   Nightmare Neon Animations
+   Cyberpunk glitch effects with neon intensity
+   ========================================================================== */
+
+/**
+ * Glitch effect for nightmare_neon hover states.
+ * Creates a digital corruption effect with color channel shifts.
+ */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(2px, 2px);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate(2px, -2px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+/**
+ * Neon pulse effect for nightmare_neon loading states.
+ * Pulsing glow that mimics neon light flickering.
+ */
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+/**
+ * Glitch entrance animation for nightmare_neon.
+ * Dramatic entrance with digital corruption effect.
+ */
+@keyframes glitch-in {
+  0% {
+    transform: translate(-10px, 0) scale(0.95);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(5px, -5px) scale(1.02);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-3px, 3px) scale(0.98);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translate(2px, -2px) scale(1.01);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Bone Minimal Animations
+   Subtle, skeletal movements with minimal flair
+   ========================================================================== */
+
+/**
+ * Bone rattle effect for bone_minimal hover states.
+ * Subtle shake that mimics rattling bones.
+ */
+@keyframes bone-rattle {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-1px);
+  }
+  75% {
+    transform: translateX(1px);
+  }
+}
+
+/**
+ * Bone pulse effect for bone_minimal loading states.
+ * Gentle breathing motion like a skeleton's ribcage.
+ */
+@keyframes bone-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+}
+
+/**
+ * Fade in entrance for bone_minimal.
+ * Simple, clean appearance without distraction.
+ */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Blood Moon Animations
+   Elegant, gothic movements with crimson intensity
+   ========================================================================== */
+
+/**
+ * Blood glow effect for blood_moon hover states.
+ * Pulsing red glow that intensifies on interaction.
+ */
+@keyframes blood-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+/**
+ * Heartbeat effect for blood_moon loading states.
+ * Rhythmic pulse that mimics a beating heart.
+ */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  14% {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+  28% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  42% {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+  56% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/**
+ * Fade with glow entrance for blood_moon.
+ * Elegant appearance with subtle glow effect.
+ */
+@keyframes fade-glow {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Accessibility: Reduced Motion Support
+   Instant alternatives when prefers-reduced-motion is enabled
+   ========================================================================== */
+
+/**
+ * When users prefer reduced motion, disable all animations.
+ * Provide instant state changes instead of animated transitions.
+ * Supports both media query and data attribute for runtime changes.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/**
+ * Runtime support via data attribute.
+ * Applied when the ThemeProvider detects motion preference changes.
+ */
+[data-reduced-motion="true"] *,
+[data-reduced-motion="true"] *::before,
+[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ==========================================================================
+   Utility Classes
+   Helper classes for applying animations to elements
+   ========================================================================== */
+
+/**
+ * Apply hover animation based on current theme.
+ * Uses CSS variable --animation-hover set by the theme.
+ * Only applies when motion is not reduced.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-hover {
+    animation: var(--animation-hover, none) var(--animation-duration-normal, 300ms) var(--animation-easing, ease);
+  }
+}
+
+/**
+ * Apply loading animation based on current theme.
+ * Uses CSS variable --animation-loading set by the theme.
+ * Only applies when motion is not reduced.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-loading {
+    animation: var(--animation-loading, none) var(--animation-duration-slow, 500ms) var(--animation-easing, ease) infinite;
+  }
+}
+
+/**
+ * Apply entrance animation based on current theme.
+ * Uses CSS variable --animation-entrance set by the theme.
+ * Only applies when motion is not reduced.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-entrance {
+    animation: var(--animation-entrance, none) var(--animation-duration-normal, 300ms) var(--animation-easing, ease);
+  }
+}
+
+/**
+ * Instant alternatives when reduced motion is preferred.
+ * Elements appear immediately without animation.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-hover,
+  .animate-loading,
+  .animate-entrance {
+    animation: none;
+  }
+}

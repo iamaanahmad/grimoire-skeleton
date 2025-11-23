@@ -1,18 +1,22 @@
 # Grimoire Skeleton - Project Architecture
 
 ## Core Philosophy
+
 Grimoire is a Kiro-native skeleton framework designed to spawn diverse applications from a single, elegant foundation. Every decision prioritizes:
+
 - **Clarity over cleverness** - Code should be immediately understandable
 - **Configuration over code** - Define entities declaratively, generate implementation
 - **Kiro-first development** - Built to showcase and leverage Kiro's full capabilities
 
 ## Technology Stack
+
 - **Frontend**: Next.js 14+ (App Router) + TypeScript + Tailwind CSS
 - **Backend**: Appwrite (for auth, database, storage)
 - **Styling**: Tailwind + CSS variables for theming
 - **State**: React hooks + Context (keep it simple)
 
 ## Folder Structure
+
 ```
 /src
   /core           # Shared components, layouts, utilities
@@ -32,7 +36,9 @@ Grimoire is a Kiro-native skeleton framework designed to spawn diverse applicati
 ```
 
 ## Entity System Design
+
 Entities are defined declaratively in config files:
+
 ```typescript
 export const entities = {
   tournament: {
@@ -40,15 +46,16 @@ export const entities = {
       name: { type: 'string', required: true },
       game: { type: 'string', required: true },
       startDate: { type: 'date', required: true },
-      status: { type: 'enum', options: ['upcoming', 'live', 'completed'] }
+      status: { type: 'enum', options: ['upcoming', 'live', 'completed'] },
     },
     permissions: ['admin', 'staff'],
-    features: ['list', 'create', 'edit', 'detail']
-  }
-}
+    features: ['list', 'create', 'edit', 'detail'],
+  },
+};
 ```
 
 From this config, the skeleton auto-generates:
+
 - List pages with filtering/sorting
 - Create/edit forms with validation
 - Detail views
@@ -56,18 +63,22 @@ From this config, the skeleton auto-generates:
 - Type definitions
 
 ## Theme System
+
 Three spooky skins, all with excellent UX:
+
 1. **nightmare_neon** - Neon green/purple, glitch effects, cyberpunk vibes
 2. **bone_minimal** - Monochrome bone-white/black, clean and stark
 3. **blood_moon** - Deep red accents, subtle glows, elegant darkness
 
 All themes maintain:
+
 - WCAG AA contrast ratios minimum
 - Smooth animations (respect prefers-reduced-motion)
 - Consistent spacing and typography
 - Skeleton loaders shaped like bones/ribs
 
 ## Code Quality Standards
+
 - All components must be TypeScript with proper types
 - Use functional components with hooks
 - Keep components under 200 lines (extract if larger)
@@ -76,6 +87,7 @@ All themes maintain:
 - No any types unless absolutely necessary
 
 ## Naming Conventions
+
 - Components: PascalCase (UserCard.tsx)
 - Utilities: camelCase (formatDate.ts)
 - Constants: UPPER_SNAKE_CASE

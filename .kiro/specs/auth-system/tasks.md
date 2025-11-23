@@ -9,7 +9,6 @@
     - Export Storage service instance for file management
     - Define and export DATABASE_ID and USERS_COLLECTION_ID constants
     - _Requirements: 1.2, 2.2, 8.2, 10.3_
-  
   - [ ] 1.2 Add Appwrite environment variables to .env.local.example
     - Document NEXT_PUBLIC_APPWRITE_ENDPOINT
     - Document NEXT_PUBLIC_APPWRITE_PROJECT_ID
@@ -41,7 +40,6 @@
     - Handle Appwrite API errors and convert to AuthError
     - Add JSDoc comments to all functions
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 3.3, 3.4, 4.1, 4.2, 4.3, 9.2, 9.3, 9.4_
-  
   - [ ] 3.2 Integrate user roles from database
     - Fetch user document from users collection after authentication
     - Extract roles array from user document
@@ -67,13 +65,11 @@
     - Add useEffect to load user when provider mounts
     - Handle loading and error states appropriately
     - _Requirements: 8.1, 8.2, 8.3, 13.1, 13.2, 13.3, 13.4_
-  
   - [ ] 5.2 Create useAuth hook
     - Implement useAuth hook that accesses AuthContext
     - Throw error if used outside AuthProvider
     - Return user, loading, error, and refreshUser
     - _Requirements: 13.2, 13.3_
-  
   - [ ] 5.3 Optimize context to prevent unnecessary re-renders
     - Use useMemo or useCallback where appropriate
     - Ensure state updates don't cause cascading re-renders
@@ -90,13 +86,11 @@
     - Add links to register and forgot password pages
     - Apply spooky theme styling
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 6.5, 11.1_
-  
   - [ ] 6.2 Add form validation
     - Validate email format
     - Require password field
     - Show validation errors inline
     - _Requirements: 2.1_
-  
   - [ ] 6.3 Make login page accessible
     - Add proper labels with htmlFor
     - Add ARIA attributes for errors
@@ -117,13 +111,11 @@
     - Add link to login page
     - Apply spooky theme styling
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 11.2_
-  
   - [ ] 7.2 Add password strength indicator
     - Show visual indicator of password strength
     - Update as user types
     - Provide feedback on requirements
     - _Requirements: 1.5, 12.4_
-  
   - [ ] 7.3 Make register page accessible
     - Add proper labels with htmlFor
     - Add ARIA attributes for errors
@@ -142,7 +134,6 @@
     - Add link back to login page
     - Apply spooky theme styling
     - _Requirements: 3.1, 3.2, 3.4_
-  
   - [ ] 8.2 Make forgot password page accessible
     - Add proper labels
     - Add ARIA attributes
@@ -161,7 +152,6 @@
     - Return null while redirecting
     - Render wrapped component when authorized
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 7.1, 7.2, 7.3_
-  
   - [ ] 9.2 Create LoadingSpinner component
     - Create reusable loading component for auth checks
     - Apply spooky theme styling
@@ -189,7 +179,6 @@
     - Display success/error messages
     - Apply spooky theme styling
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 4.1, 4.2, 4.3, 4.4_
-  
   - [ ] 11.2 Make profile page accessible
     - Add proper labels and ARIA attributes
     - Support keyboard navigation
@@ -207,7 +196,6 @@
     - Preserve intended destination in redirect query parameter
     - Configure matcher to exclude API routes and static files
     - _Requirements: 6.1, 6.2, 6.5, 10.1, 10.2, 10.3, 14.1, 14.2, 14.3, 14.4_
-  
   - [ ] 12.2 Test middleware with various routes
     - Test protected route without session
     - Test protected route with session
@@ -223,7 +211,6 @@
     - Implement clearSession function for logout
     - Handle session expiration gracefully
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
-  
   - [ ] 13.2 Integrate session refresh into AuthContext
     - Check session expiration periodically
     - Refresh session automatically when needed
@@ -236,8 +223,8 @@
     - Apply spooky theme styling
     - _Requirements: 7.2, 7.3_
 
-- [ ]* 15. Write authentication tests
-  - [ ]* 15.1 Create src/core/lib/auth/__tests__/service.test.ts
+- [ ]\* 15. Write authentication tests
+  - [ ]\* 15.1 Create src/core/lib/auth/**tests**/service.test.ts
     - Test login with valid credentials
     - Test login with invalid credentials
     - Test register with valid data
@@ -246,15 +233,13 @@
     - Test getCurrentUser
     - Test password reset
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 3.3, 3.4, 4.1, 4.2, 4.3_
-  
-  - [ ]* 15.2 Create src/core/lib/auth/__tests__/permissions.test.ts
+  - [ ]\* 15.2 Create src/core/lib/auth/**tests**/permissions.test.ts
     - Test hasRole function
     - Test hasAnyRole function
     - Test hasAllRoles function
     - Test canAccessFeature function
     - _Requirements: 5.1, 5.3, 5.4, 5.5_
-  
-  - [ ]* 15.3 Create integration tests for auth flow
+  - [ ]\* 15.3 Create integration tests for auth flow
     - Test complete registration flow
     - Test complete login flow
     - Test protected route access
@@ -270,7 +255,6 @@
     - Document Appwrite setup steps
     - Add troubleshooting section for common issues
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5_
-  
   - [ ] 16.2 Add authentication section to main DEVELOPMENT.md
     - Link to auth README
     - Explain how to set up Appwrite project

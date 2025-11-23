@@ -1,16 +1,18 @@
 ---
 inclusion: fileMatch
-fileMatchPattern: "**/*.{tsx,css,scss}"
+fileMatchPattern: '**/*.{tsx,css,scss}'
 ---
 
 # Grimoire UI Design System
 
 ## Spooky But Usable
+
 Our UI must be hauntingly beautiful while maintaining excellent UX. Every animation, color, and interaction should feel intentional.
 
 ## Design Tokens
 
 ### Colors (CSS Variables)
+
 ```css
 /* Base Dark Theme */
 --bg-primary: #0a0a0f;
@@ -37,7 +39,9 @@ Our UI must be hauntingly beautiful while maintaining excellent UX. Every animat
 ```
 
 ### Spacing Scale
+
 Use Tailwind's default scale, but think in terms of:
+
 - xs: 0.5rem (8px) - tight spacing
 - sm: 0.75rem (12px) - compact
 - md: 1rem (16px) - default
@@ -46,11 +50,13 @@ Use Tailwind's default scale, but think in terms of:
 - 2xl: 3rem (48px) - major sections
 
 ### Typography
+
 - **Headings**: Inter or system-ui, bold, tight line-height
 - **Body**: Inter or system-ui, regular, comfortable line-height (1.6)
 - **Mono**: 'Fira Code' or 'Courier New' for code/data
 
 Sizes:
+
 - xs: 0.75rem (12px)
 - sm: 0.875rem (14px)
 - base: 1rem (16px)
@@ -62,28 +68,35 @@ Sizes:
 ## Component Patterns
 
 ### Cards
+
 ```tsx
 // Standard card with spooky hover
-<div className="bg-secondary rounded-lg p-6 border border-tertiary 
+<div
+  className="bg-secondary rounded-lg p-6 border border-tertiary 
                 hover:border-accent-primary hover:shadow-glow 
-                transition-all duration-300">
+                transition-all duration-300"
+>
   {children}
 </div>
 ```
 
 ### Buttons
+
 Three variants:
+
 1. **Primary** - Accent color, bold, for main actions
 2. **Secondary** - Outlined, subtle, for secondary actions
 3. **Ghost** - Minimal, text-only, for tertiary actions
 
 All buttons should have:
+
 - Smooth hover transitions (200-300ms)
 - Subtle scale on hover (scale-105)
 - Focus rings for accessibility
 - Loading states with skeleton animation
 
 ### Tables
+
 - Zebra striping with very subtle bg difference
 - Hover row highlights with accent glow
 - Sticky headers on scroll
@@ -91,6 +104,7 @@ All buttons should have:
 - Empty states with ghost illustrations
 
 ### Forms
+
 - Labels above inputs, always
 - Error states in red with icon
 - Success states in green with icon
@@ -101,13 +115,25 @@ All buttons should have:
 ## Spooky Animations
 
 ### Glitch Effect (Nightmare Neon)
+
 ```css
 @keyframes glitch {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
 }
 
 .glitch-hover:hover {
@@ -116,16 +142,23 @@ All buttons should have:
 ```
 
 ### Bone Skeleton Loader
+
 ```css
 @keyframes bone-pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .skeleton-bone {
-  background: linear-gradient(90deg, 
-    var(--bg-tertiary) 25%, 
-    var(--accent-primary) 50%, 
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 25%,
+    var(--accent-primary) 50%,
     var(--bg-tertiary) 75%
   );
   background-size: 200% 100%;
@@ -134,10 +167,16 @@ All buttons should have:
 ```
 
 ### Fade Ghost (for empty states)
+
 ```css
 @keyframes fade-ghost {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .ghost-icon {
@@ -146,13 +185,25 @@ All buttons should have:
 ```
 
 ### Heartbeat Line (Haunted Clinic)
+
 ```css
 @keyframes heartbeat {
-  0%, 100% { transform: scaleY(1); }
-  10% { transform: scaleY(1.3); }
-  20% { transform: scaleY(1); }
-  30% { transform: scaleY(1.5); }
-  40% { transform: scaleY(1); }
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  10% {
+    transform: scaleY(1.3);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+  30% {
+    transform: scaleY(1.5);
+  }
+  40% {
+    transform: scaleY(1);
+  }
 }
 
 .heartbeat-line {
@@ -161,6 +212,7 @@ All buttons should have:
 ```
 
 ## Accessibility Requirements
+
 - All interactive elements must have focus states
 - Color contrast must meet WCAG AA (4.5:1 for text)
 - Animations respect `prefers-reduced-motion`
@@ -169,7 +221,9 @@ All buttons should have:
 - Keyboard navigation works everywhere
 
 ## Spooky Terminology
+
 Use throughout the UI:
+
 - "Summon" instead of "Create"
 - "Banish" instead of "Delete"
 - "Curse" for errors
@@ -181,7 +235,9 @@ Use throughout the UI:
 - "Ritual" for process/workflow
 
 ## Component Checklist
+
 Every component should have:
+
 - [ ] TypeScript props interface
 - [ ] JSDoc comment explaining purpose
 - [ ] Responsive design (mobile-first)
@@ -194,6 +250,7 @@ Every component should have:
 - [ ] Spooky touch (animation, terminology, or visual)
 
 ## Layout Principles
+
 - **Sidebar**: Fixed left, 240px wide, collapsible on mobile
 - **Top bar**: Sticky, 64px height, app title + theme toggle + user menu
 - **Content area**: Max width 1400px, centered, padding on sides
@@ -201,6 +258,7 @@ Every component should have:
 - **Spacing**: Generous whitespace, let content breathe
 
 ## Performance
+
 - Lazy load images
 - Code split routes
 - Minimize animation jank (use transform/opacity only)

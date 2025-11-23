@@ -88,8 +88,8 @@ interface FieldDefinition {
     min?: number;
     max?: number;
   };
-  options?: string[];  // For enum types
-  reference?: string;  // For reference types
+  options?: string[]; // For enum types
+  reference?: string; // For reference types
   defaultValue?: any;
 }
 ```
@@ -99,30 +99,30 @@ interface FieldDefinition {
 ```typescript
 export const tournament: EntityDefinition = {
   fields: {
-    name: { 
-      type: 'string', 
+    name: {
+      type: 'string',
       required: true,
-      validation: { min: 3, max: 100 }
+      validation: { min: 3, max: 100 },
     },
-    game: { 
-      type: 'enum', 
+    game: {
+      type: 'enum',
       required: true,
-      options: ['League of Legends', 'Dota 2', 'CS:GO', 'Valorant', 'Overwatch']
+      options: ['League of Legends', 'Dota 2', 'CS:GO', 'Valorant', 'Overwatch'],
     },
     startDate: { type: 'date', required: true },
     endDate: { type: 'date' },
     prizePool: { type: 'number', validation: { min: 0 } },
-    status: { 
+    status: {
       type: 'enum',
       options: ['upcoming', 'live', 'completed', 'cancelled'],
-      defaultValue: 'upcoming'
+      defaultValue: 'upcoming',
     },
-    maxTeams: { 
+    maxTeams: {
       type: 'number',
       validation: { min: 2, max: 64 },
-      defaultValue: 16
+      defaultValue: 16,
     },
-    description: { type: 'string' }
+    description: { type: 'string' },
   },
   permissions: ['admin', 'staff'],
   features: ['list', 'create', 'edit', 'detail', 'delete'],
@@ -132,8 +132,8 @@ export const tournament: EntityDefinition = {
     plural: 'Tournaments',
     listColumns: ['name', 'game', 'startDate', 'status', 'prizePool'],
     sortBy: 'startDate',
-    sortOrder: 'desc'
-  }
+    sortOrder: 'desc',
+  },
 };
 ```
 
@@ -142,22 +142,22 @@ export const tournament: EntityDefinition = {
 ```typescript
 export const team: EntityDefinition = {
   fields: {
-    name: { 
-      type: 'string', 
+    name: {
+      type: 'string',
       required: true,
-      validation: { min: 2, max: 50 }
+      validation: { min: 2, max: 50 },
     },
-    tag: { 
-      type: 'string', 
+    tag: {
+      type: 'string',
       required: true,
-      validation: { min: 2, max: 5 }
+      validation: { min: 2, max: 5 },
     },
-    logo: { type: 'string' },  // URL
+    logo: { type: 'string' }, // URL
     membersCount: { type: 'number', defaultValue: 0 },
     region: {
       type: 'enum',
-      options: ['NA', 'EU', 'ASIA', 'SA', 'OCE']
-    }
+      options: ['NA', 'EU', 'ASIA', 'SA', 'OCE'],
+    },
   },
   permissions: ['admin', 'staff'],
   features: ['list', 'create', 'edit', 'detail', 'delete'],
@@ -167,8 +167,8 @@ export const team: EntityDefinition = {
     plural: 'Teams',
     listColumns: ['name', 'tag', 'region', 'membersCount'],
     sortBy: 'name',
-    sortOrder: 'asc'
-  }
+    sortOrder: 'asc',
+  },
 };
 ```
 
@@ -177,18 +177,18 @@ export const team: EntityDefinition = {
 ```typescript
 export const player: EntityDefinition = {
   fields: {
-    gamertag: { 
-      type: 'string', 
+    gamertag: {
+      type: 'string',
       required: true,
-      validation: { min: 2, max: 30 }
+      validation: { min: 2, max: 30 },
     },
     realName: { type: 'string' },
     team: { type: 'reference', reference: 'team' },
     role: {
       type: 'enum',
-      options: ['Top', 'Jungle', 'Mid', 'ADC', 'Support', 'Flex']
+      options: ['Top', 'Jungle', 'Mid', 'ADC', 'Support', 'Flex'],
     },
-    country: { type: 'string' }
+    country: { type: 'string' },
   },
   permissions: ['admin', 'staff'],
   features: ['list', 'create', 'edit', 'detail', 'delete'],
@@ -198,8 +198,8 @@ export const player: EntityDefinition = {
     plural: 'Players',
     listColumns: ['gamertag', 'team', 'role', 'country'],
     sortBy: 'gamertag',
-    sortOrder: 'asc'
-  }
+    sortOrder: 'asc',
+  },
 };
 ```
 
@@ -208,30 +208,30 @@ export const player: EntityDefinition = {
 ```typescript
 export const match: EntityDefinition = {
   fields: {
-    tournament: { 
-      type: 'reference', 
+    tournament: {
+      type: 'reference',
       reference: 'tournament',
-      required: true
+      required: true,
     },
-    teamA: { 
-      type: 'reference', 
+    teamA: {
+      type: 'reference',
       reference: 'team',
-      required: true
+      required: true,
     },
-    teamB: { 
-      type: 'reference', 
+    teamB: {
+      type: 'reference',
       reference: 'team',
-      required: true
+      required: true,
     },
     scoreA: { type: 'number', defaultValue: 0, validation: { min: 0 } },
     scoreB: { type: 'number', defaultValue: 0, validation: { min: 0 } },
     status: {
       type: 'enum',
       options: ['scheduled', 'live', 'completed'],
-      defaultValue: 'scheduled'
+      defaultValue: 'scheduled',
     },
     scheduledTime: { type: 'date' },
-    round: { type: 'string' }  // e.g., "Quarter Finals"
+    round: { type: 'string' }, // e.g., "Quarter Finals"
   },
   permissions: ['admin', 'staff'],
   features: ['list', 'create', 'edit', 'detail', 'delete'],
@@ -241,8 +241,8 @@ export const match: EntityDefinition = {
     plural: 'Matches',
     listColumns: ['tournament', 'teamA', 'teamB', 'status', 'scheduledTime'],
     sortBy: 'scheduledTime',
-    sortOrder: 'asc'
-  }
+    sortOrder: 'asc',
+  },
 };
 ```
 
@@ -267,6 +267,7 @@ interface TournamentCardProps {
 ```
 
 **Styling Approach**:
+
 - Base card from skeleton's Card component
 - Custom CSS for arcade cabinet shape (angled corners)
 - Neon glow using box-shadow with theme colors
@@ -293,6 +294,7 @@ interface MatchScoreUpdaterProps {
 ```
 
 **State Management**:
+
 ```typescript
 const [scoreA, setScoreA] = useState(match.scoreA);
 const [scoreB, setScoreB] = useState(match.scoreB);
@@ -331,14 +333,18 @@ interface BracketViewProps {
 ```
 
 **Data Structure**:
+
 ```typescript
 // Group matches by round
-const rounds = matches.reduce((acc, match) => {
-  const round = match.round || 'Unassigned';
-  if (!acc[round]) acc[round] = [];
-  acc[round].push(match);
-  return acc;
-}, {} as Record<string, Match[]>);
+const rounds = matches.reduce(
+  (acc, match) => {
+    const round = match.round || 'Unassigned';
+    if (!acc[round]) acc[round] = [];
+    acc[round].push(match);
+    return acc;
+  },
+  {} as Record<string, Match[]>
+);
 
 // Render order: QF -> SF -> F
 const roundOrder = ['Quarter Finals', 'Semi Finals', 'Finals'];
@@ -351,30 +357,33 @@ const roundOrder = ['Quarter Finals', 'Semi Finals', 'Finals'];
 Custom dashboard showing overview of the platform.
 
 **Data Requirements**:
+
 - Upcoming tournaments (next 5, sorted by startDate)
 - Live matches (status === 'live')
 - Statistics (total counts)
 
 **API Calls**:
+
 ```typescript
 const upcomingTournaments = await fetchTournaments({
   filter: { status: 'upcoming' },
   sort: 'startDate',
-  limit: 5
+  limit: 5,
 });
 
 const liveMatches = await fetchMatches({
-  filter: { status: 'live' }
+  filter: { status: 'live' },
 });
 
 const stats = {
   totalTournaments: await countTournaments(),
   totalTeams: await countTeams(),
-  totalPlayers: await countPlayers()
+  totalPlayers: await countPlayers(),
 };
 ```
 
 **Layout**:
+
 - Stats cards at top (3 columns on desktop, 1 on mobile)
 - Upcoming tournaments section with TournamentCard components
 - Live matches section with match cards
@@ -385,6 +394,7 @@ const stats = {
 Custom detail page extending the generated tournament detail view.
 
 **Sections**:
+
 1. Tournament header (name, game, dates, prize pool, status)
 2. Edit/Delete actions
 3. Matches section (grouped by round)
@@ -392,11 +402,12 @@ Custom detail page extending the generated tournament detail view.
 5. Bracket view
 
 **Data Requirements**:
+
 ```typescript
 const tournament = await fetchTournament(id);
-const matches = await fetchMatches({ 
+const matches = await fetchMatches({
   filter: { tournament: id },
-  sort: 'scheduledTime'
+  sort: 'scheduledTime',
 });
 const teams = await fetchTeamsInTournament(id);
 ```
@@ -406,23 +417,25 @@ const teams = await fetchTeamsInTournament(id);
 Custom detail page extending the generated team detail view.
 
 **Sections**:
+
 1. Team header (name, tag, logo, region)
 2. Edit/Delete actions
 3. Roster section (list of players)
 4. Match history section
 
 **Data Requirements**:
+
 ```typescript
 const team = await fetchTeam(id);
-const players = await fetchPlayers({ 
+const players = await fetchPlayers({
   filter: { team: id },
-  sort: 'gamertag'
+  sort: 'gamertag',
 });
 const matches = await fetchMatches({
-  filter: { 
-    $or: [{ teamA: id }, { teamB: id }]
+  filter: {
+    $or: [{ teamA: id }, { teamB: id }],
   },
-  sort: 'scheduledTime'
+  sort: 'scheduledTime',
 });
 ```
 
@@ -462,7 +475,7 @@ interface Player {
   id: string;
   gamertag: string;
   realName?: string;
-  team?: string;  // Team ID reference
+  team?: string; // Team ID reference
   role?: 'Top' | 'Jungle' | 'Mid' | 'ADC' | 'Support' | 'Flex';
   country?: string;
   createdAt: Date;
@@ -471,9 +484,9 @@ interface Player {
 
 interface Match {
   id: string;
-  tournament: string;  // Tournament ID reference
-  teamA: string;       // Team ID reference
-  teamB: string;       // Team ID reference
+  tournament: string; // Tournament ID reference
+  teamA: string; // Team ID reference
+  teamB: string; // Team ID reference
   scoreA: number;
   scoreB: number;
   status: 'scheduled' | 'live' | 'completed';
@@ -489,21 +502,25 @@ interface Match {
 Each entity maps to an Appwrite collection with the following structure:
 
 **Collection: tournaments**
+
 - Attributes match entity fields
 - Indexes: startDate, status
 - Permissions: admin, staff (read/write)
 
 **Collection: teams**
+
 - Attributes match entity fields
 - Indexes: name, region
 - Permissions: admin, staff (read/write)
 
 **Collection: players**
+
 - Attributes match entity fields
 - Indexes: gamertag, team (for filtering by team)
 - Permissions: admin, staff (read/write)
 
 **Collection: matches**
+
 - Attributes match entity fields
 - Indexes: tournament, status, scheduledTime
 - Permissions: admin, staff (read/write)
@@ -528,7 +545,7 @@ All form validation is handled by the generated form components using the valida
 if (name.length < 3 || name.length > 100) {
   return {
     field: 'name',
-    message: 'Tournament name must be between 3 and 100 characters'
+    message: 'Tournament name must be between 3 and 100 characters',
   };
 }
 ```
@@ -601,24 +618,24 @@ describe('Tournament Management Flow', () => {
       name: 'Test Tournament',
       game: 'League of Legends',
       startDate: new Date(),
-      maxTeams: 8
+      maxTeams: 8,
     });
-    
+
     // 2. Create teams
     const teamA = await createTeam({ name: 'Team A', tag: 'TMA' });
     const teamB = await createTeam({ name: 'Team B', tag: 'TMB' });
-    
+
     // 3. Create match
     const match = await createMatch({
       tournament: tournament.id,
       teamA: teamA.id,
       teamB: teamB.id,
-      status: 'scheduled'
+      status: 'scheduled',
     });
-    
+
     // 4. Update scores
     await updateMatchScores(match.id, { scoreA: 2, scoreB: 1 });
-    
+
     // 5. Verify bracket view shows correct winner
     const bracket = await getBracketView(tournament.id);
     expect(bracket).toContainWinner(teamA.id);
@@ -666,23 +683,38 @@ Additional styles specific to Cursed Arena:
 .arcade-card {
   position: relative;
   clip-path: polygon(
-    0 10px, 10px 0, 
-    calc(100% - 10px) 0, 100% 10px,
-    100% calc(100% - 10px), calc(100% - 10px) 100%,
-    10px 100%, 0 calc(100% - 10px)
+    0 10px,
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px)
   );
-  box-shadow: 
+  box-shadow:
     0 0 20px var(--color-primary),
     inset 0 0 20px rgba(var(--color-primary-rgb), 0.2);
 }
 
 /* Glitch animation */
 @keyframes glitch {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
 }
 
 .arcade-card:hover {
@@ -691,7 +723,7 @@ Additional styles specific to Cursed Arena:
 
 /* Neon glow effect */
 .neon-glow {
-  text-shadow: 
+  text-shadow:
     0 0 10px var(--color-primary),
     0 0 20px var(--color-primary),
     0 0 30px var(--color-primary);
@@ -699,8 +731,13 @@ Additional styles specific to Cursed Arena:
 
 /* Live indicator pulse */
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .live-indicator {
@@ -711,6 +748,7 @@ Additional styles specific to Cursed Arena:
 ### Responsive Breakpoints
 
 Following Tailwind's default breakpoints:
+
 - Mobile: < 640px
 - Tablet: 640px - 1024px
 - Desktop: > 1024px
@@ -733,8 +771,8 @@ const BracketView = dynamic(() => import('@/components/BracketView'), {
 // Use Next.js Image component
 import Image from 'next/image';
 
-<Image 
-  src={team.logo} 
+<Image
+  src={team.logo}
   alt={team.name}
   width={100}
   height={100}
@@ -782,28 +820,28 @@ async function seed() {
       startDate: addDays(new Date(), 7),
       prizePool: 100000,
       status: 'upcoming',
-      maxTeams: 16
+      maxTeams: 16,
     }),
     // ... more tournaments
   ]);
-  
+
   // Create teams
   const teams = await Promise.all([
     createTeam({ name: 'Shadow Legends', tag: 'SL', region: 'NA' }),
     createTeam({ name: 'Neon Knights', tag: 'NK', region: 'EU' }),
     // ... more teams
   ]);
-  
+
   // Create players
   const players = await Promise.all([
-    createPlayer({ 
-      gamertag: 'DarkMage', 
-      team: teams[0].id, 
-      role: 'Mid' 
+    createPlayer({
+      gamertag: 'DarkMage',
+      team: teams[0].id,
+      role: 'Mid',
     }),
     // ... more players
   ]);
-  
+
   // Create matches
   const matches = await Promise.all([
     createMatch({
@@ -812,11 +850,11 @@ async function seed() {
       teamB: teams[1].id,
       round: 'Quarter Finals',
       status: 'scheduled',
-      scheduledTime: addDays(new Date(), 8)
+      scheduledTime: addDays(new Date(), 8),
     }),
     // ... more matches
   ]);
-  
+
   console.log('Seed data created successfully');
 }
 ```
@@ -827,7 +865,8 @@ async function seed() {
 
 **Decision**: Use the entity generator for all basic CRUD operations rather than hand-coding.
 
-**Rationale**: 
+**Rationale**:
+
 - Demonstrates the skeleton's core value proposition
 - Ensures consistency across all entities
 - Reduces development time by 70%+
@@ -839,6 +878,7 @@ async function seed() {
 **Decision**: Create custom components for dashboard, tournament detail, and team detail pages.
 
 **Rationale**:
+
 - These pages have unique layouts not covered by standard CRUD
 - Showcases how to extend generated code
 - Demonstrates flexibility of the skeleton
@@ -849,6 +889,7 @@ async function seed() {
 **Decision**: Implement a simple text-based bracket rather than a visual drag-and-drop bracket.
 
 **Rationale**:
+
 - Keeps scope manageable for hackathon timeline
 - Focuses on functionality over fancy UI
 - Easier to make accessible
@@ -859,6 +900,7 @@ async function seed() {
 **Decision**: Use nightmare_neon theme as the default for Cursed Arena.
 
 **Rationale**:
+
 - Best fits the esports/gaming aesthetic
 - Showcases the theme engine's capabilities
 - Provides strong visual identity
@@ -869,6 +911,7 @@ async function seed() {
 **Decision**: Use Appwrite for all backend services.
 
 **Rationale**:
+
 - Provides auth, database, and storage in one platform
 - Easy to set up and configure
 - Good developer experience

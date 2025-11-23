@@ -66,7 +66,6 @@
   - Make subtle and non-distracting
   - _Requirements: 4.4, 8.3_
 
-
 - [ ] 4. Implement doctor schedule view
 - [ ] 4.1 Create doctor schedule page
   - Write `apps/haunted-clinic/src/app/doctors/[id]/schedule/page.tsx`
@@ -152,7 +151,6 @@
   - Update UI optimistically for better UX
   - _Requirements: 3.4_
 
-
 - [ ] 7. Create custom components
 - [ ] 7.1 Create doctor card component
   - Write `apps/haunted-clinic/src/components/DoctorCard.tsx`
@@ -227,7 +225,6 @@
   - Test layouts on different screen sizes
   - Ensure touch targets are minimum 44x44 pixels
   - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5_
-
 
 - [ ] 10. Implement accessibility features
 - [ ] 10.1 Add keyboard navigation
@@ -304,7 +301,6 @@
   - Log errors for debugging
   - _Requirements: 11.1_
 
-
 - [ ] 13. Implement performance optimizations
 - [ ] 13.1 Add code splitting
   - Implement dynamic imports for heavy components (AppointmentBooking, DoctorSchedule)
@@ -355,15 +351,15 @@
   - Explain permission settings
   - _Requirements: 7.1, 7.2, 7.3_
 
-- [ ]* 15. Write tests
-- [ ]* 15.1 Write unit tests for utilities
+- [ ]\* 15. Write tests
+- [ ]\* 15.1 Write unit tests for utilities
   - Test date/time formatting functions
   - Test time-to-position calculations
   - Test status transition logic
   - Test validation functions
   - _Requirements: 1.2, 2.2, 3.2_
 
-- [ ]* 15.2 Write integration tests for API routes
+- [ ]\* 15.2 Write integration tests for API routes
   - Test creating doctor with valid data
   - Test creating patient with valid data
   - Test creating appointment with valid references
@@ -372,20 +368,19 @@
   - Test fetching doctor schedule
   - _Requirements: 1.1, 1.4, 2.1, 2.4, 3.1, 3.4_
 
-- [ ]* 15.3 Write component tests
+- [ ]\* 15.3 Write component tests
   - Test booking flow state transitions
   - Test status manager confirmation logic
   - Test schedule grid rendering
   - Test dashboard data display
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
-- [ ]* 15.4 Write end-to-end tests
+- [ ]\* 15.4 Write end-to-end tests
   - Test complete booking flow from doctor selection to confirmation
   - Test viewing appointment in doctor's schedule
   - Test updating appointment status
   - Test dashboard displays correct data
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 4.1, 4.2, 4.3, 5.1, 5.2, 5.3, 5.4_
-
 
 - [ ] 16. Final polish and quality assurance
 - [ ] 16.1 Visual polish pass

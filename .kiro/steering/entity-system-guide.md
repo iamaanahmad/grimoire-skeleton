@@ -1,14 +1,16 @@
 ---
 inclusion: fileMatch
-fileMatchPattern: "**/*{entity,config,generator}*"
+fileMatchPattern: '**/*{entity,config,generator}*'
 ---
 
 # Entity System Guide
 
 ## Core Concept
+
 The entity system is Grimoire's secret sauce. Define an entity once, get a full CRUD interface automatically.
 
 ## Entity Definition Schema
+
 ```typescript
 interface EntityDefinition {
   fields: Record<string, FieldDefinition>;
@@ -48,39 +50,40 @@ interface DisplayConfig {
 ## Example Entity Definitions
 
 ### Cursed Arena - Tournament
+
 ```typescript
 export const tournament: EntityDefinition = {
   fields: {
-    name: { 
-      type: 'string', 
+    name: {
+      type: 'string',
       required: true,
-      validation: { min: 3, max: 100 }
+      validation: { min: 3, max: 100 },
     },
-    game: { 
-      type: 'enum', 
+    game: {
+      type: 'enum',
       required: true,
-      options: ['League of Legends', 'Dota 2', 'CS:GO', 'Valorant']
+      options: ['League of Legends', 'Dota 2', 'CS:GO', 'Valorant'],
     },
-    startDate: { 
-      type: 'date', 
-      required: true 
+    startDate: {
+      type: 'date',
+      required: true,
     },
-    endDate: { 
-      type: 'date' 
+    endDate: {
+      type: 'date',
     },
-    prizePool: { 
+    prizePool: {
       type: 'number',
-      validation: { min: 0 }
+      validation: { min: 0 },
     },
-    status: { 
+    status: {
       type: 'enum',
       options: ['upcoming', 'live', 'completed', 'cancelled'],
-      defaultValue: 'upcoming'
+      defaultValue: 'upcoming',
     },
-    maxTeams: { 
+    maxTeams: {
       type: 'number',
-      validation: { min: 2, max: 64 }
-    }
+      validation: { min: 2, max: 64 },
+    },
   },
   permissions: ['admin', 'staff'],
   features: ['list', 'create', 'edit', 'detail', 'delete'],
@@ -90,41 +93,42 @@ export const tournament: EntityDefinition = {
     plural: 'Tournaments',
     listColumns: ['name', 'game', 'startDate', 'status', 'prizePool'],
     sortBy: 'startDate',
-    sortOrder: 'desc'
-  }
+    sortOrder: 'desc',
+  },
 };
 ```
 
 ### Haunted Clinic - Appointment
+
 ```typescript
 export const appointment: EntityDefinition = {
   fields: {
-    patientName: { 
-      type: 'string', 
-      required: true 
-    },
-    doctor: { 
-      type: 'reference', 
-      reference: 'doctor',
-      required: true 
-    },
-    date: { 
-      type: 'date', 
-      required: true 
-    },
-    time: { 
-      type: 'string', 
+    patientName: {
+      type: 'string',
       required: true,
-      validation: { pattern: '^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$' }
     },
-    status: { 
+    doctor: {
+      type: 'reference',
+      reference: 'doctor',
+      required: true,
+    },
+    date: {
+      type: 'date',
+      required: true,
+    },
+    time: {
+      type: 'string',
+      required: true,
+      validation: { pattern: '^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$' },
+    },
+    status: {
       type: 'enum',
       options: ['scheduled', 'confirmed', 'completed', 'cancelled', 'no-show'],
-      defaultValue: 'scheduled'
+      defaultValue: 'scheduled',
     },
-    notes: { 
-      type: 'string' 
-    }
+    notes: {
+      type: 'string',
+    },
   },
   permissions: ['admin', 'staff'],
   features: ['list', 'create', 'edit', 'detail', 'delete'],
@@ -134,15 +138,17 @@ export const appointment: EntityDefinition = {
     plural: 'Appointments',
     listColumns: ['patientName', 'doctor', 'date', 'time', 'status'],
     sortBy: 'date',
-    sortOrder: 'asc'
-  }
+    sortOrder: 'asc',
+  },
 };
 ```
 
 ## Code Generation Rules
 
 ### 1. Type Generation
+
 From entity definition, generate TypeScript types:
+
 ```typescript
 // Generated from tournament entity
 export interface Tournament {
@@ -160,7 +166,9 @@ export interface Tournament {
 ```
 
 ### 2. List Page Generation
+
 Generate a list page component:
+
 - Table with columns from `display.listColumns`
 - Filters for enum fields
 - Search for string fields
@@ -170,7 +178,9 @@ Generate a list page component:
 - Row actions: View, Edit, Delete (based on features)
 
 ### 3. Form Generation
+
 Generate create/edit form:
+
 - Fields in order of definition
 - Input type based on field type:
   - string → text input
@@ -185,7 +195,9 @@ Generate create/edit form:
 - Submit button: "Cast {Entity}" for create, "Enchant {Entity}" for edit
 
 ### 4. Detail Page Generation
+
 Generate detail view:
+
 - Card layout with all fields
 - Labels from field names (camelCase → Title Case)
 - Format values appropriately (dates, numbers, etc.)
@@ -193,7 +205,9 @@ Generate detail view:
 - Related entities section (if references exist)
 
 ### 5. API Route Generation
+
 Generate Next.js API routes:
+
 ```typescript
 // /api/tournaments/route.ts
 export async function GET(request: Request) {
@@ -221,6 +235,7 @@ export async function DELETE(request: Request, { params }) {
 ## Extension Patterns
 
 ### Custom Validators
+
 ```typescript
 // config/validators.ts
 export const validators = {
@@ -230,11 +245,12 @@ export const validators = {
   uniqueTournamentName: async (value: string) => {
     const exists = await checkTournamentExists(value);
     return !exists || 'Tournament name already exists';
-  }
+  },
 };
 ```
 
 ### Custom Field Renderers
+
 ```typescript
 // For special field types that need custom UI
 export const fieldRenderers = {
@@ -250,21 +266,21 @@ export const fieldRenderers = {
 ```
 
 ### Computed Fields
+
 ```typescript
 // Fields that are calculated, not stored
 export const computedFields = {
   tournament: {
     daysUntilStart: (entity: Tournament) => {
-      const days = Math.ceil(
-        (entity.startDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
-      );
+      const days = Math.ceil((entity.startDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
       return days;
-    }
-  }
+    },
+  },
 };
 ```
 
 ## File Structure for Generated Code
+
 ```
 /src/modules/{entityName}/
   types.ts              # TypeScript interfaces
@@ -274,13 +290,14 @@ export const computedFields = {
   detail.tsx            # Detail view
   api.ts                # API client functions
   validators.ts         # Custom validators
-  
+
 /src/app/api/{entityName}/
   route.ts              # List & Create endpoints
   [id]/route.ts         # Get, Update, Delete endpoints
 ```
 
 ## Generator Implementation Notes
+
 - Use template strings for code generation
 - Preserve formatting with Prettier
 - Add comments explaining generated code
@@ -290,13 +307,16 @@ export const computedFields = {
 - Register routes in app router
 
 ## Testing Generated Code
+
 Every generated entity should have:
+
 - Unit tests for validators
 - Integration tests for API routes
 - Component tests for forms
 - E2E test for full CRUD flow
 
 ## Performance Considerations
+
 - Lazy load entity modules
 - Cache entity definitions
 - Debounce search/filter inputs

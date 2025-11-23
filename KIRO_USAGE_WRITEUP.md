@@ -14,7 +14,9 @@ This document explains how we leveraged Kiro's features to develop the Grimoire 
 ## 1. Vibe Coding
 
 ### What We Used It For
+
 Vibe coding was our go-to approach for:
+
 - Rapid UI component prototyping
 - Spooky animations and effects
 - Refactoring and code cleanup
@@ -22,11 +24,13 @@ Vibe coding was our go-to approach for:
 - Bug fixes and tweaks
 
 ### Most Impressive Generation
+
 The standout moment was generating the entire theme system's visual effects:
 
 **Prompt**: "Create a dark-themed tournament card component that looks like a cursed arcade cabinet. It should have neon green borders that glow on hover, a glitch animation effect, and display tournament name, game, date, and prize pool. Make it responsive and accessible."
 
 **Result**: Kiro generated a production-ready component with:
+
 - Perfect neon glow effects using CSS box-shadow
 - Smooth glitch animation using CSS keyframes
 - Proper semantic HTML structure
@@ -37,7 +41,9 @@ The standout moment was generating the entire theme system's visual effects:
 This single generation saved ~2 hours of CSS tweaking and demonstrated Kiro's understanding of both technical requirements and aesthetic vision.
 
 ### Workflow Pattern
+
 Our typical vibe coding session:
+
 1. Describe the component or feature conversationally
 2. Kiro generates initial implementation
 3. Request refinements: "Make the animation more subtle" or "Add loading state"
@@ -45,18 +51,22 @@ Our typical vibe coding session:
 5. Final polish and integration
 
 ### Key Insight
+
 Vibe coding excels when you can describe the "feel" of what you want. Kiro understood terms like "cursed arcade cabinet," "bone-shaped skeleton loader," and "heartbeat animation" without needing pixel-perfect specifications.
 
 ## 2. Spec-Driven Development
 
 ### What We Used It For
+
 Specs were essential for complex, interconnected systems:
+
 - **Entity System** - The core generation engine
 - **Theme Engine** - CSS variable management
 - **Auth System** - Security-critical flows
 - **Both Applications** - Complete feature sets
 
 ### Spec Structure
+
 Each spec followed this pattern:
 
 1. **Overview** - High-level description
@@ -68,7 +78,9 @@ Each spec followed this pattern:
 7. **Timeline Estimate** - Realistic time allocation
 
 ### Example: Entity System Spec
+
 The entity system spec had 15 tasks:
+
 - Task 1-3: Type definitions and generators
 - Task 4-7: Generic UI components
 - Task 8-11: Code generation and registry
@@ -79,18 +91,21 @@ Each task was small enough for Kiro to implement correctly in one go, but togeth
 ### Spec vs Vibe Coding Comparison
 
 **Specs Won For**:
+
 - Complex logic with many edge cases
 - Systems requiring consistency across multiple files
 - Security-critical code (auth)
 - Code that other code depends on (entity system)
 
 **Vibe Coding Won For**:
+
 - UI components with visual requirements
 - Quick iterations and experiments
 - Refactoring existing code
 - One-off utilities and helpers
 
 ### Key Insight
+
 Specs gave us **confidence** in core systems. We could review the plan, approve it, then let Kiro execute all 15 tasks knowing they'd work together. This was crucial for the entity generator - it touches types, components, API routes, and navigation.
 
 ## 3. Agent Hooks
@@ -98,8 +113,10 @@ Specs gave us **confidence** in core systems. We could review the plan, approve 
 We created 4 hooks that automated repetitive workflows:
 
 ### Hook 1: Entity Generator ⭐ (The Star)
+
 **Trigger**: When a new entity config file is saved  
 **Action**: Automatically generates:
+
 - TypeScript types (interfaces, DTOs)
 - List page component
 - Form component (create/edit)
@@ -112,8 +129,10 @@ We created 4 hooks that automated repetitive workflows:
 **Example**: When we created `tournament.entity.ts`, the hook triggered and generated the entire tournament module in under 30 seconds.
 
 ### Hook 2: Theme Validator
+
 **Trigger**: When theme files are saved  
-**Action**: 
+**Action**:
+
 - Checks contrast ratios (WCAG AA compliance)
 - Validates CSS variable naming
 - Ensures animations use only transform/opacity
@@ -122,8 +141,10 @@ We created 4 hooks that automated repetitive workflows:
 **Impact**: Caught 3 accessibility issues early. Saved ~1 hour of manual testing.
 
 ### Hook 3: Component Documentation
+
 **Trigger**: When component files are saved  
 **Action**:
+
 - Ensures JSDoc comments exist
 - Checks for prop documentation
 - Validates accessibility attributes
@@ -132,8 +153,10 @@ We created 4 hooks that automated repetitive workflows:
 **Impact**: Maintained documentation quality throughout. Saved ~1 hour of manual doc writing.
 
 ### Hook 4: Pre-commit Quality Check
+
 **Trigger**: Manual (run before commits)  
 **Action**:
+
 - TypeScript compilation check
 - Prettier formatting
 - Removes console.logs
@@ -145,6 +168,7 @@ We created 4 hooks that automated repetitive workflows:
 ### Total Time Saved: ~8 hours
 
 ### Key Insight
+
 Hooks are perfect for "every time I do X, I need to do Y" workflows. The entity generator hook is particularly powerful because it encodes our architectural patterns - new developers can't accidentally create inconsistent code.
 
 ## 4. Steering Documents
@@ -152,42 +176,51 @@ Hooks are perfect for "every time I do X, I need to do Y" workflows. The entity 
 We created 4 steering documents to guide Kiro's behavior:
 
 ### 1. project-architecture.md (Always Included)
+
 **Purpose**: Core tech decisions and folder structure  
 **Impact**: Ensured Kiro always knew where to put files and what naming conventions to use
 
 **Example**: When asked to create a new component, Kiro automatically:
+
 - Used PascalCase naming
 - Put it in the correct folder
 - Added proper TypeScript types
 - Included JSDoc comments
 
 ### 2. entity-system-guide.md (Conditional: entity files)
+
 **Purpose**: Deep dive into entity generation patterns  
 **Impact**: When working on entity-related code, Kiro had detailed context about field types, validation, and generation rules
 
 **Example**: When generating a form for an entity with a "reference" field, Kiro knew to create a searchable select component that fetches options from the referenced entity's API.
 
 ### 3. ui-design-system.md (Conditional: UI files)
+
 **Purpose**: Design tokens, spacing, typography, spooky animations  
 **Impact**: Maintained visual consistency across all components
 
 **Example**: When creating any button, Kiro automatically:
+
 - Used theme CSS variables
 - Added proper hover states
 - Included focus rings for accessibility
 - Used spooky terminology ("Summon" instead of "Create")
 
 ### 4. kiro-usage-strategy.md (Always Included)
+
 **Purpose**: Meta-document about how we use Kiro  
 **Impact**: Helped Kiro understand when to suggest specs vs vibe coding
 
 ### Key Insight
+
 Steering docs are like having a senior developer looking over Kiro's shoulder. They encode our architectural decisions and ensure consistency without micromanaging every interaction.
 
 ## 5. MCP Integration
 
 ### Appwrite MCP (Planned)
+
 We planned to create a custom MCP server for Appwrite integration:
+
 - Query collections during development
 - Test auth flows without leaving Kiro
 - Manage permissions
@@ -196,7 +229,9 @@ We planned to create a custom MCP server for Appwrite integration:
 **Status**: Due to time constraints, we used the Appwrite SDK directly, but the MCP would have streamlined development further.
 
 ### Impact of MCP Concept
+
 Even without implementing custom MCP, the ability to extend Kiro's capabilities influenced our architecture. We designed the entity system to be MCP-friendly - a future MCP could:
+
 - Auto-generate Appwrite collection schemas from entity definitions
 - Sync permissions
 - Generate seed data
@@ -207,6 +242,7 @@ Even without implementing custom MCP, the ability to extend Kiro's capabilities 
 ### Typical Day with Kiro
 
 **Morning** (Core Systems):
+
 1. Review spec for entity system
 2. Ask Kiro to implement tasks 1-5
 3. Review generated code
@@ -214,12 +250,14 @@ Even without implementing custom MCP, the ability to extend Kiro's capabilities 
 5. Commit with pre-commit hook
 
 **Afternoon** (UI Work):
+
 1. Vibe code new components: "Create a doctor profile card with..."
 2. Iterate on animations: "Make the heartbeat more subtle"
 3. Theme validator hook catches contrast issue
 4. Fix and continue
 
 **Evening** (Integration):
+
 1. Create new entity config
 2. Entity generator hook creates all files
 3. Customize generated components
@@ -246,24 +284,31 @@ Even without implementing custom MCP, the ability to extend Kiro's capabilities 
 ## What We Learned
 
 ### Spec Granularity Matters
+
 Tasks should be:
+
 - Small enough to implement in one go (~30-60 min)
 - Large enough to be meaningful (not "add semicolon")
 - Testable with clear acceptance criteria
 
 ### Steering Docs Are Powerful
+
 Conditional steering (fileMatch) is brilliant:
+
 - UI steering only loads for .tsx files
 - Entity steering only loads for entity configs
 - Keeps context relevant and focused
 
 ### Hooks Need Clear Triggers
+
 Our most successful hooks had:
+
 - Specific file patterns (not too broad)
 - Clear, automatable actions
 - Fast execution (<30 seconds)
 
 ### Vibe Coding Shines for Creative Work
+
 When we could describe the "feel" or "vibe" of what we wanted, Kiro excelled. Technical specs are great, but "make it look like a cursed arcade cabinet" worked beautifully.
 
 ## Conclusion

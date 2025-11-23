@@ -9,20 +9,24 @@ This design document outlines the technical approach for setting up the Grimoire
 ### Technology Stack
 
 **Frontend Framework:**
+
 - Next.js 14+ with App Router for modern React development
 - React 18+ for component architecture
 - TypeScript 5+ for type safety
 
 **Styling:**
+
 - Tailwind CSS 3+ for utility-first styling
 - CSS variables for dynamic theming
 - PostCSS for CSS processing
 
 **Backend:**
+
 - Appwrite for authentication, database, and storage
 - Server-side API routes in Next.js for backend logic
 
 **Development Tools:**
+
 - ESLint for code linting
 - Prettier for code formatting
 - Jest or Vitest for testing
@@ -58,6 +62,7 @@ grimoire-skeleton/
 ### Configuration Files
 
 **tsconfig.json:**
+
 ```typescript
 {
   "compilerOptions": {
@@ -88,14 +93,12 @@ grimoire-skeleton/
 ```
 
 **tailwind.config.ts:**
+
 ```typescript
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './apps/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './apps/**/*.{js,ts,jsx,tsx,mdx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -108,9 +111,9 @@ const config: Config = {
         foreground: 'var(--color-foreground)',
       },
       animation: {
-        'glitch': 'glitch 1s infinite',
+        glitch: 'glitch 1s infinite',
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-        'float': 'float 3s ease-in-out infinite',
+        float: 'float 3s ease-in-out infinite',
       },
       keyframes: {
         glitch: {
@@ -132,12 +135,13 @@ const config: Config = {
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;
 ```
 
 **package.json scripts:**
+
 ```json
 {
   "scripts": {
@@ -162,6 +166,7 @@ export default config
 ### Environment Variables
 
 **.env.local.example:**
+
 ```bash
 # Appwrite Configuration
 NEXT_PUBLIC_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
@@ -177,6 +182,7 @@ NODE_ENV=development
 ### ESLint Configuration
 
 **.eslintrc.json:**
+
 ```json
 {
   "extends": [
@@ -187,10 +193,13 @@ NODE_ENV=development
   ],
   "rules": {
     "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "@typescript-eslint/no-unused-vars": ["error", { 
-      "argsIgnorePattern": "^_",
-      "varsIgnorePattern": "^_" 
-    }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -202,6 +211,7 @@ NODE_ENV=development
 ### Prettier Configuration
 
 **.prettierrc:**
+
 ```json
 {
   "printWidth": 100,
@@ -222,6 +232,7 @@ NODE_ENV=development
 ### Git Configuration
 
 **.gitignore:**
+
 ```
 # Dependencies
 node_modules/
@@ -272,10 +283,12 @@ Thumbs.db
 The setup script will create the following collections:
 
 **Users Collection:**
+
 - Managed by Appwrite Auth
 - Extended with custom attributes via database collection
 
 **Tournaments Collection (Cursed Arena):**
+
 - name: string
 - game: string
 - startDate: datetime
@@ -285,12 +298,14 @@ The setup script will create the following collections:
 - prizePool: string
 
 **Teams Collection (Cursed Arena):**
+
 - name: string
 - tournamentId: string (relationship)
 - members: string[] (array of user IDs)
 - status: enum (registered, active, eliminated)
 
 **Appointments Collection (Haunted Clinic):**
+
 - patientId: string (relationship to users)
 - doctorId: string (relationship to users)
 - dateTime: datetime
@@ -299,6 +314,7 @@ The setup script will create the following collections:
 - notes: string
 
 **Doctors Collection (Haunted Clinic):**
+
 - userId: string (relationship to users)
 - specialty: string
 - availability: json (schedule data)
@@ -309,11 +325,13 @@ The setup script will create the following collections:
 ### Build-time Errors
 
 **TypeScript Errors:**
+
 - Strict mode catches type mismatches at compile time
 - Path alias resolution errors fail the build
 - Missing dependencies cause clear error messages
 
 **ESLint Errors:**
+
 - Linting errors block commits (via pre-commit hook)
 - Warnings are displayed but don't block
 - Auto-fixable issues are fixed on save
@@ -321,26 +339,25 @@ The setup script will create the following collections:
 ### Runtime Errors
 
 **Environment Variable Validation:**
+
 ```typescript
 // src/core/lib/env.ts
 export function validateEnv() {
-  const required = [
-    'NEXT_PUBLIC_APPWRITE_ENDPOINT',
-    'NEXT_PUBLIC_APPWRITE_PROJECT_ID',
-  ];
-  
-  const missing = required.filter(key => !process.env[key]);
-  
+  const required = ['NEXT_PUBLIC_APPWRITE_ENDPOINT', 'NEXT_PUBLIC_APPWRITE_PROJECT_ID'];
+
+  const missing = required.filter((key) => !process.env[key]);
+
   if (missing.length > 0) {
     throw new Error(
       `Missing required environment variables: ${missing.join(', ')}\n` +
-      'Please copy .env.local.example to .env.local and fill in the values.'
+        'Please copy .env.local.example to .env.local and fill in the values.'
     );
   }
 }
 ```
 
 **Appwrite Connection Errors:**
+
 - Graceful fallback when Appwrite is unreachable
 - Clear error messages for authentication failures
 - Retry logic for transient network errors
@@ -350,12 +367,14 @@ export function validateEnv() {
 ### Testing Framework Choice
 
 **Vitest** (recommended over Jest):
+
 - Faster execution with native ESM support
 - Better TypeScript integration
 - Compatible with Vite ecosystem
 - Simpler configuration
 
 **vitest.config.ts:**
+
 ```typescript
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
@@ -370,10 +389,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        'src/core/lib/test-setup.ts',
-      ],
+      exclude: ['node_modules/', 'src/core/lib/test-setup.ts'],
     },
   },
   resolve: {
@@ -390,16 +406,19 @@ export default defineConfig({
 ### Test Structure
 
 **Unit Tests:**
+
 - Test utilities and helper functions
 - Test individual components in isolation
 - Mock external dependencies (Appwrite, etc.)
 
 **Integration Tests:**
+
 - Test component interactions
 - Test API route handlers
 - Test form submissions and validation
 
 **Example Test:**
+
 ```typescript
 // src/core/lib/__tests__/env.test.ts
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
@@ -419,13 +438,13 @@ describe('validateEnv', () => {
   it('should not throw when all required variables are present', () => {
     process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT = 'https://cloud.appwrite.io/v1';
     process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID = 'test-project';
-    
+
     expect(() => validateEnv()).not.toThrow();
   });
 
   it('should throw when required variables are missing', () => {
     delete process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
-    
+
     expect(() => validateEnv()).toThrow(/Missing required environment variables/);
   });
 });
@@ -436,6 +455,7 @@ describe('validateEnv', () => {
 ### Script Design
 
 **scripts/setup-appwrite.ts:**
+
 ```typescript
 import { Client, Databases, ID } from 'node-appwrite';
 
@@ -461,19 +481,11 @@ async function setupDatabase() {
   }
 }
 
-async function createCollection(
-  collectionId: string,
-  collectionName: string,
-  attributes: any[]
-) {
+async function createCollection(collectionId: string, collectionName: string, attributes: any[]) {
   try {
-    await databases.createCollection(
-      DATABASE_ID,
-      collectionId,
-      collectionName
-    );
+    await databases.createCollection(DATABASE_ID, collectionId, collectionName);
     console.log(`✓ Collection '${collectionName}' created`);
-    
+
     // Create attributes
     for (const attr of attributes) {
       await databases.createStringAttribute(
@@ -496,18 +508,18 @@ async function createCollection(
 
 async function main() {
   console.log('Setting up Appwrite...\n');
-  
+
   await setupDatabase();
-  
+
   // Create collections
   await createCollection('tournaments', 'Tournaments', [
     { key: 'name', size: 255, required: true },
     { key: 'game', size: 255, required: true },
     { key: 'status', size: 50, required: true },
   ]);
-  
+
   // Add more collections...
-  
+
   console.log('\n✓ Appwrite setup complete!');
 }
 
@@ -519,6 +531,7 @@ main().catch(console.error);
 ### README.md
 
 **Sections:**
+
 1. Project title and description
 2. Features list (entity system, theme engine, dual apps)
 3. Quick start (clone, install, configure, run)
@@ -531,6 +544,7 @@ main().catch(console.error);
 ### DEVELOPMENT.md
 
 **Sections:**
+
 1. Prerequisites (Node.js, npm, Appwrite account)
 2. Local setup steps
 3. Environment variables explanation
@@ -587,17 +601,20 @@ main().catch(console.error);
 ## Implementation Phases
 
 ### Phase 1: Foundation (Tasks 1-5)
+
 - Initialize Next.js project
 - Create folder structure
 - Configure TypeScript, Tailwind, environment variables
 
 ### Phase 2: Tooling (Tasks 6-10)
+
 - Set up npm scripts
 - Configure ESLint and Prettier
 - Configure Git
 - Set up testing framework
 
 ### Phase 3: Backend & Docs (Tasks 11-15)
+
 - Create Appwrite setup script
 - Write DEVELOPMENT.md
 - Write README.md
