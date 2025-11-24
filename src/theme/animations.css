@@ -244,7 +244,7 @@
  * Only applies when motion is not reduced.
  */
 @media (prefers-reduced-motion: no-preference) {
-  .animate-hover {
+  .animate-hover:hover {
     animation: var(--animation-hover, none) var(--animation-duration-normal, 300ms) var(--animation-easing, ease);
   }
 }

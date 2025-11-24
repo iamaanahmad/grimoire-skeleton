@@ -1,0 +1,88 @@
+/**
+ * Cursed Arena Custom Styles
+ * 
+ * App-specific styles for arcade cabinet aesthetics and special effects.
+ */
+
+/* Arcade cabinet card styling */
+.arcade-card {
+  position: relative;
+  clip-path: polygon(
+    0 10px,
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+  box-shadow:
+    0 0 20px var(--color-accent-primary),
+    inset 0 0 20px color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
+}
+
+/* Glitch animation */
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.arcade-card:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Neon glow effect */
+.neon-glow {
+  text-shadow:
+    0 0 10px var(--color-accent-primary),
+    0 0 20px var(--color-accent-primary),
+    0 0 30px var(--color-accent-primary);
+}
+
+/* Live indicator pulse */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.live-indicator {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .arcade-card:hover {
+    animation: none;
+  }
+  
+  .live-indicator {
+    animation: none;
+    opacity: 1;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

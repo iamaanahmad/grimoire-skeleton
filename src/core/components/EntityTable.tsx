@@ -81,19 +81,18 @@ export function EntityTable<T extends { $id: string }>({
             {/* Desktop Table View */}
             <div 
                 data-testid="desktop-table" 
-                className="hidden md:block overflow-x-auto rounded-lg"
+                className="hidden md:block overflow-x-auto rounded-lg glass-panel"
                 style={{
                     borderWidth: '1px',
                     borderStyle: 'solid',
                     borderColor: 'var(--color-border-primary)',
-                    backgroundColor: 'var(--color-bg-secondary)',
                 }}
             >
                 <table className="w-full text-left text-sm">
                     <thead 
                         className="uppercase font-mono text-xs"
                         style={{
-                            backgroundColor: 'var(--color-bg-tertiary)',
+                            backgroundColor: 'color-mix(in srgb, var(--color-bg-tertiary) 50%, transparent)',
                             color: 'var(--color-text-secondary)',
                         }}
                     >
@@ -142,18 +141,19 @@ export function EntityTable<T extends { $id: string }>({
                             borderTopColor: 'var(--color-border-primary)',
                         }}
                     >
-                        {paginatedData.map((item) => (
+                        {paginatedData.map((item, index) => (
                             <tr 
                                 key={item.$id} 
-                                className="group"
+                                className="group animate-entrance"
                                 style={{
                                     borderBottomWidth: '1px',
                                     borderBottomStyle: 'solid',
                                     borderBottomColor: 'var(--color-border-secondary)',
                                     transition: `background-color var(--animation-duration-fast) var(--animation-easing)`,
+                                    animationDelay: `${index * 50}ms`,
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.backgroundColor = 'color-mix(in srgb, var(--color-accent-primary) 5%, transparent)';
+                                    e.currentTarget.style.backgroundColor = 'color-mix(in srgb, var(--color-accent-primary) 10%, transparent)';
                                 }}
                                 onMouseLeave={(e) => {
                                     e.currentTarget.style.backgroundColor = 'transparent';

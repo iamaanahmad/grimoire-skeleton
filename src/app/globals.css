@@ -52,6 +52,14 @@ body {
   /* Smooth theme transitions */
   transition: background-color var(--animation-duration-normal, 300ms) var(--animation-easing, ease),
               color var(--animation-duration-normal, 300ms) var(--animation-easing, ease);
+  
+  /* Spooky Background Pattern */
+  background-image: 
+    radial-gradient(circle at 50% 0%, var(--color-bg-secondary) 0%, transparent 70%),
+    linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-attachment: fixed;
 }
 
 /* Remove default list styles */
@@ -368,6 +376,21 @@ pre code {
 
 .spooky-hover:hover {
   transform: translateY(-2px);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+.box-glow {
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+.glass-panel {
+  background-color: color-mix(in srgb, var(--color-bg-secondary) 80%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Loading state */

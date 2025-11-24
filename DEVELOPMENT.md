@@ -819,4 +819,84 @@ This will:
 
 See the [Entity System Guide](./.kiro/steering/entity-system-guide.md) for more details.
 
+## Authentication System
+
+The Grimoire Skeleton includes a complete authentication system powered by Appwrite. For detailed documentation, see [Authentication README](./src/core/lib/auth/README.md).
+
+### Quick Start
+
+1. **Wrap your app with AuthProvider** in `src/app/layout.tsx`:
+
+```tsx
+import { AuthProvider } from '@/core/lib/auth/AuthContext';
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+2. **Access auth state** in any component:
+
+```tsx
+import { useAuth } from '@/core/lib/auth/AuthContext';
+
+function MyComponent() {
+  const { user, loading } = useAuth();
+  
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <div>Please log in</div>;
+  
+  return <div>Welcome, {user.name}!</div>;
+}
+```
+
+3. **Protect routes** with the HOC:
+
+```tsx
+import { withAuth } from '@/core/lib/auth/withAuth';
+
+function DashboardPage() {
+  return <div>Protected Dashboard</div>;
+}
+
+export default withAuth(DashboardPage, {
+  requiredRoles: ['admin', 'staff'] // Optional
+});
+```
+
+### Available Routes
+
+- `/login` - User login
+- `/register` - New user registration
+- `/forgot-password` - Password reset
+- `/profile` - User profile management
+- `/unauthorized` - Access denied page
+
+### User Roles
+
+The system supports three roles:
+
+- **user**: Default role for all registered users
+- **staff**: Elevated permissions for staff members
+- **admin**: Full access to all features
+
+### Security Features
+
+- HTTP-only cookies for session storage
+- Password hashing via Appwrite (bcrypt)
+- CSRF protection with SameSite cookies
+- Email verification support
+- Secure password reset flow
+- Role-based access control
+
+For complete documentation, troubleshooting, and API reference, see [src/core/lib/auth/README.md](./src/core/lib/auth/README.md).
+
 Happy coding! 🎃👻💀

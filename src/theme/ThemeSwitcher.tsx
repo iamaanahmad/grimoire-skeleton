@@ -189,7 +189,7 @@ export function ThemeSwitcher({ className = '', variant = 'dropdown' }: ThemeSwi
 
       {isOpen && (
         <ul
-          className="theme-switcher-dropdown"
+          className="theme-switcher-dropdown glass-panel"
           role="listbox"
           aria-label="Available themes"
         >

@@ -1,5 +1,4 @@
 import { EntityDefinition } from '@/core/types/entity';
-import { CURSED_ARENA_COLLECTIONS, DATABASE_IDS } from '@/core/lib/appwrite';
 
 export const tournament: EntityDefinition = {
   fields: {
@@ -45,6 +44,6 @@ export const tournament: EntityDefinition = {
     write: ['staff', 'admin'],
     delete: ['admin']
   },
-  collectionId: CURSED_ARENA_COLLECTIONS.TOURNAMENTS,
-  databaseId: DATABASE_IDS.CURSED_ARENA
+  collectionId: 'tournaments',
+  databaseId: 'cursed_arena'
 };

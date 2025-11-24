@@ -57,10 +57,12 @@ export const FieldInput: React.FC<FieldInputProps> = ({
                         aria-describedby={error ? `${name}-error` : undefined}
                         onFocus={(e) => {
                             e.currentTarget.style.borderColor = 'var(--color-accent-primary)';
+                            e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent-glow)';
                             e.currentTarget.style.outline = 'none';
                         }}
                         onBlurCapture={(e) => {
                             e.currentTarget.style.borderColor = error ? 'var(--color-status-error)' : 'var(--color-border-primary)';
+                            e.currentTarget.style.boxShadow = 'none';
                         }}
                     />
                 );
@@ -78,10 +80,12 @@ export const FieldInput: React.FC<FieldInputProps> = ({
                         aria-describedby={error ? `${name}-error` : undefined}
                         onFocus={(e) => {
                             e.currentTarget.style.borderColor = 'var(--color-accent-primary)';
+                            e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent-glow)';
                             e.currentTarget.style.outline = 'none';
                         }}
                         onBlurCapture={(e) => {
                             e.currentTarget.style.borderColor = error ? 'var(--color-status-error)' : 'var(--color-border-primary)';
+                            e.currentTarget.style.boxShadow = 'none';
                         }}
                     />
                 );
@@ -129,10 +133,12 @@ export const FieldInput: React.FC<FieldInputProps> = ({
                         aria-describedby={error ? `${name}-error` : undefined}
                         onFocus={(e) => {
                             e.currentTarget.style.borderColor = 'var(--color-accent-primary)';
+                            e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent-glow)';
                             e.currentTarget.style.outline = 'none';
                         }}
                         onBlurCapture={(e) => {
                             e.currentTarget.style.borderColor = error ? 'var(--color-status-error)' : 'var(--color-border-primary)';
+                            e.currentTarget.style.boxShadow = 'none';
                         }}
                     />
                 );
@@ -149,10 +155,12 @@ export const FieldInput: React.FC<FieldInputProps> = ({
                         aria-describedby={error ? `${name}-error` : undefined}
                         onFocus={(e) => {
                             e.currentTarget.style.borderColor = 'var(--color-accent-primary)';
+                            e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent-glow)';
                             e.currentTarget.style.outline = 'none';
                         }}
                         onBlurCapture={(e) => {
                             e.currentTarget.style.borderColor = error ? 'var(--color-status-error)' : 'var(--color-border-primary)';
+                            e.currentTarget.style.boxShadow = 'none';
                         }}
                     >
                         <option value="">Select {field.label}...</option>
@@ -179,10 +187,12 @@ export const FieldInput: React.FC<FieldInputProps> = ({
                         aria-describedby={error ? `${name}-error` : undefined}
                         onFocus={(e) => {
                             e.currentTarget.style.borderColor = 'var(--color-accent-primary)';
+                            e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent-glow)';
                             e.currentTarget.style.outline = 'none';
                         }}
                         onBlurCapture={(e) => {
                             e.currentTarget.style.borderColor = error ? 'var(--color-status-error)' : 'var(--color-border-primary)';
+                            e.currentTarget.style.boxShadow = 'none';
                         }}
                     />
                 );
