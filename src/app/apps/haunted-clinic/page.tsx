@@ -1,3 +1,5 @@
+'use client';
+
 import { fetchTodayAppointments, fetchUpcomingAppointments, countDoctors, countPatients, fetchDoctors, fetchPatients } from '@/lib/haunted-clinic/api';
 import { Appointment } from '@/types/haunted-clinic/entities';
 import { StatisticsCards } from '@/components/haunted-clinic/StatisticsCards';
@@ -8,7 +10,7 @@ import '@/styles/haunted-clinic/custom.css';
 /**
  * Dashboard Page Component
  * 
- * Server component that displays:
+ * Client component that displays:
  * - Statistics cards (total doctors, patients, today's appointments)
  * - Today's schedule timeline
  * - Upcoming appointments list
