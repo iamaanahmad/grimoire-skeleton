@@ -1,9 +1,7 @@
-import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@/theme/animations.css';
-import { ThemeProvider } from '@/theme/ThemeProvider';
-import { AuthProvider } from '@/core/lib/auth/AuthContext';
+import { Providers } from './providers';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -15,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Grimoire Skeleton',
   description: 'A spooky skeleton framework for spawning diverse applications',
 };
@@ -28,11 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AuthProvider>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </AuthProvider>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

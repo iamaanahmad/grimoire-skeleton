@@ -1,0 +1,148 @@
+2025-11-24T13:42:45.477795882Z    ▲ Next.js 16.0.3 (Turbopack)
+2025-11-24T13:42:45.478379300Z 
+2025-11-24T13:42:45.483196280Z  ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+2025-11-24T13:42:45.599848153Z    Creating an optimized production build ...
+2025-11-24T13:43:55.175503393Z  ✓ Compiled successfully in 68s
+2025-11-24T13:43:55.177935688Z    Running TypeScript ...
+2025-11-24T13:44:40.365461734Z    Collecting page data using 7 workers ...
+2025-11-24T13:44:51.958118723Z    Generating static pages using 7 workers (0/28) ...
+2025-11-24T13:44:55.374068482Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.374102501Z 
+2025-11-24T13:44:55.374108158Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.462977211Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.463007760Z 
+2025-11-24T13:44:55.463013723Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.563607200Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.563632318Z 
+2025-11-24T13:44:55.563636258Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.564734536Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.564752860Z 
+2025-11-24T13:44:55.564758527Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.759490876Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.759538047Z 
+2025-11-24T13:44:55.759543931Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.772654604Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.772672188Z 
+2025-11-24T13:44:55.772677849Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.773444413Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.773455640Z 
+2025-11-24T13:44:55.773460599Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.876065209Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.876090051Z 
+2025-11-24T13:44:55.876094210Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.963812394Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.963833678Z 
+2025-11-24T13:44:55.963837499Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:55.964546129Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:55.964557801Z 
+2025-11-24T13:44:55.964561607Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.070338817Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.070364080Z 
+2025-11-24T13:44:56.070373562Z Check the top-level render call using <__next_viewport_boundary__>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.157663540Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.157719024Z 
+2025-11-24T13:44:56.157724985Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.163790782Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.163836356Z 
+2025-11-24T13:44:56.163842804Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.176132271Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.176174539Z 
+2025-11-24T13:44:56.176181364Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.178360213Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.178372106Z 
+2025-11-24T13:44:56.178375934Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.264060949Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.264095886Z 
+2025-11-24T13:44:56.264101614Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.264702580Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.264721566Z 
+2025-11-24T13:44:56.264727172Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.457632152Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.457685594Z 
+2025-11-24T13:44:56.457692805Z Check the top-level render call using <__next_viewport_boundary__>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.459266358Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.459279310Z 
+2025-11-24T13:44:56.459284130Z Check the top-level render call using <V>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.467714195Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.467728725Z 
+2025-11-24T13:44:56.467733604Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.467997534Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.468007578Z 
+2025-11-24T13:44:56.468011217Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.469358872Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.469383204Z 
+2025-11-24T13:44:56.469386915Z Check the top-level render call using <__next_viewport_boundary__>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.470342488Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.470351453Z 
+2025-11-24T13:44:56.470354874Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.559309539Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.559336804Z 
+2025-11-24T13:44:56.559341914Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.559773081Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.559789621Z 
+2025-11-24T13:44:56.559794502Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.561117913Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.561134391Z 
+2025-11-24T13:44:56.561139715Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.660722914Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.660751757Z 
+2025-11-24T13:44:56.660757417Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.660999571Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.661004375Z 
+2025-11-24T13:44:56.661008507Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.759968805Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.760019067Z 
+2025-11-24T13:44:56.760026749Z Check the top-level render call using <__next_viewport_boundary__>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.760860825Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.760882031Z 
+2025-11-24T13:44:56.760887487Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.762522674Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.762540166Z 
+2025-11-24T13:44:56.762545807Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.772699686Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.772724724Z 
+2025-11-24T13:44:56.772729947Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.772734334Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.772737937Z 
+2025-11-24T13:44:56.772741786Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.869621041Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.869650902Z 
+2025-11-24T13:44:56.869658030Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.869662583Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.869666801Z 
+2025-11-24T13:44:56.869683239Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.875789582Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.875807518Z 
+2025-11-24T13:44:56.875811945Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.966559266Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.966588052Z 
+2025-11-24T13:44:56.966594676Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:56.966598950Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:56.966602967Z 
+2025-11-24T13:44:56.966607349Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:57.077197895Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:57.077223215Z 
+2025-11-24T13:44:57.077228655Z Check the top-level render call using <__next_viewport_boundary__>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:57.077233151Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:57.077237145Z 
+2025-11-24T13:44:57.077242389Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:57.162640617Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:57.162670355Z 
+2025-11-24T13:44:57.162676008Z Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:57.163199033Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:57.163209270Z 
+2025-11-24T13:44:57.163214200Z Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:57.168755793Z Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+2025-11-24T13:44:57.257850952Z TypeError: Cannot read properties of null (reading 'useState')
+2025-11-24T13:44:57.257881644Z     at f (.next/server/chunks/ssr/[root-of-the-server]__ffa20b69._.js:3:718) {
+2025-11-24T13:44:57.257887624Z   digest: '3684663044'
+2025-11-24T13:44:57.257892028Z }
+2025-11-24T13:44:57.257896300Z Export encountered an error on /_not-found/page: /_not-found, exiting the build.
+2025-11-24T13:44:57.262047192Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:57.262080150Z 
+2025-11-24T13:44:57.262085287Z Check the top-level render call using <__next_viewport_boundary__>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:57.262724785Z Each child in a list should have a unique "key" prop.
+2025-11-24T13:44:57.262730373Z 
+2025-11-24T13:44:57.262737673Z Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+2025-11-24T13:44:57.360562043Z  ⨯ Next.js build worker exited with code: 1 and signal: null
+2025-11-24T13:45:03.000000000Z Build archive was not created.
