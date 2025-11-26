@@ -1,38 +1,40 @@
-/**
- * Create Doctor Page
- */
-
 'use client';
 
-import React from 'react';
 import { useRouter } from 'next/navigation';
 import { EntityForm } from '@/core/components/EntityForm';
 import { doctor } from '@/config/haunted-clinic/entities';
 import { createDoctor } from '@/lib/haunted-clinic/api';
+import { ArrowLeft } from 'lucide-react';
 
 export default function NewDoctorPage() {
   const router = useRouter();
 
   const handleSubmit = async (values: any) => {
-    try {
-      await createDoctor(values);
-      router.push('/doctors');
-    } catch (error) {
-      console.error('Failed to create doctor:', error);
-      throw error;
-    }
+    await createDoctor(values);
+    router.push('/apps/haunted-clinic/doctors');
   };
 
   return (
-    <div className="min-h-screen p-6" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
-            Add Doctor
-          </h1>
-          <p style={{ color: 'var(--color-text-secondary)' }}>
-            Register a new medical professional
-          </p>
+    <div className="min-h-screen w-full" style={{ backgroundColor: '#0a0a0f' }}>
+      <div className="w-full px-6 py-8">
+        <button
+          onClick={() => router.back()}
+          className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-lg transition-all duration-200 hover:scale-105"
+          style={{ backgroundColor: '#1a1a2e', color: '#a0a0b0', border: '1px solid #2d2d44' }}
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </button>
+
+        <div className="text-center mb-12">
+          <div
+            className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full"
+            style={{ backgroundColor: '#1a1a2e', border: '3px solid #00ff88', boxShadow: '0 0 30px rgba(0, 255, 136, 0.3)' }}
+          >
+            <span className="text-4xl">👨‍⚕️</span>
+          </div>
+          <h1 className="text-4xl font-bold mb-3" style={{ color: '#ffffff' }}>Add Doctor</h1>
+          <p className="text-lg" style={{ color: '#808090' }}>Register a new medical professional</p>
         </div>
 
         <EntityForm entityDef={doctor} onSubmit={handleSubmit} mode="create" />

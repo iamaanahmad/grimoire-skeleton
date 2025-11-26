@@ -109,7 +109,7 @@ export default function DoctorSchedulePage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <button
-            onClick={() => router.push(`/doctors/${id}`)}
+            onClick={() => router.push(`/apps/haunted-clinic/doctors/${id}`)}
             className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-80"
             style={{
               backgroundColor: 'var(--color-bg-secondary)',

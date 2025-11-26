@@ -97,7 +97,7 @@ export default function TournamentDetailPage({ params }: { params: { id: string 
             </span>
             <div className="flex gap-2">
               <button
-                onClick={() => router.push(`/tournaments/${tournament.$id}/edit`)}
+                onClick={() => router.push(`/apps/cursed-arena/tournaments/${tournament.$id}/edit`)}
                 className="p-2 rounded"
                 style={{
                   backgroundColor: 'var(--color-bg-tertiary)',
@@ -109,7 +109,7 @@ export default function TournamentDetailPage({ params }: { params: { id: string 
               <button
                 onClick={() => {
                   if (confirm('Banish this tournament?')) {
-                    router.push('/tournaments');
+                    router.push('/apps/cursed-arena/tournaments');
                   }
                 }}
                 className="p-2 rounded"

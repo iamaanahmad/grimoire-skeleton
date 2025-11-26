@@ -3,25 +3,25 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { EntityForm } from '@/core/components/EntityForm';
-import { patient } from '@/config/haunted-clinic/entities';
-import { fetchPatient, updatePatient } from '@/lib/haunted-clinic/api';
-import { Patient } from '@/types/haunted-clinic/entities';
+import { player } from '@/config/cursed-arena/entities';
+import { fetchPlayer, updatePlayer } from '@/lib/cursed-arena/api';
+import { Player } from '@/types/cursed-arena/entities';
 import { ArrowLeft } from 'lucide-react';
 
-export default function EditPatientPage() {
+export default function EditPlayerPage() {
   const router = useRouter();
   const params = useParams();
   const id = params.id as string;
-  const [data, setData] = useState<Patient | null>(null);
+  const [data, setData] = useState<Player | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchPatient(id).then(setData).catch(console.error).finally(() => setLoading(false));
+    fetchPlayer(id).then(setData).catch(console.error).finally(() => setLoading(false));
   }, [id]);
 
   const handleSubmit = async (values: any) => {
-    await updatePatient(id, values);
-    router.push(`/apps/haunted-clinic/patients/${id}`);
+    await updatePlayer(id, values);
+    router.push(`/apps/cursed-arena/players/${id}`);
   };
 
   if (loading) {
@@ -40,13 +40,13 @@ export default function EditPatientPage() {
       <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#0a0a0f' }}>
         <div className="text-center">
           <div className="text-6xl mb-4">👻</div>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: '#ffffff' }}>Patient Not Found</h2>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: '#ffffff' }}>Player Not Found</h2>
           <button
-            onClick={() => router.push('/apps/haunted-clinic/patients')}
+            onClick={() => router.push('/apps/cursed-arena/players')}
             className="mt-4 px-6 py-3 rounded-xl font-bold"
             style={{ backgroundColor: '#00ff88', color: '#0a0a0f' }}
           >
-            Back to Patients
+            Back to Players
           </button>
         </div>
       </div>
@@ -70,13 +70,13 @@ export default function EditPatientPage() {
             className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full"
             style={{ backgroundColor: '#1a1a2e', border: '3px solid #00ff88', boxShadow: '0 0 30px rgba(0, 255, 136, 0.3)' }}
           >
-            <span className="text-4xl">🧑‍🦱</span>
+            <span className="text-4xl">🎮</span>
           </div>
-          <h1 className="text-4xl font-bold mb-3" style={{ color: '#ffffff' }}>Edit Patient</h1>
-          <p className="text-lg" style={{ color: '#808090' }}>Update {data.name}</p>
+          <h1 className="text-4xl font-bold mb-3" style={{ color: '#ffffff' }}>Edit Player</h1>
+          <p className="text-lg" style={{ color: '#808090' }}>Update {data.gamertag}</p>
         </div>
 
-        <EntityForm entityDef={patient} initialValues={data} onSubmit={handleSubmit} mode="edit" />
+        <EntityForm entityDef={player} initialValues={data} onSubmit={handleSubmit} mode="edit" />
       </div>
     </div>
   );

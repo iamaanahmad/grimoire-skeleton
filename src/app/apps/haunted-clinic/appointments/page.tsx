@@ -1,15 +1,12 @@
-/**
- * Appointments List Page
- */
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { EntityTable, Column } from '@/core/components/EntityTable';
 import { Appointment, Doctor, Patient } from '@/types/haunted-clinic/entities';
 import { fetchAppointments, deleteAppointment, fetchDoctors, fetchPatients } from '@/lib/haunted-clinic/api';
-import { Plus } from 'lucide-react';
+import { PageHeader, StatusBadge, GlowCard } from '@/components/shared';
 
 export default function AppointmentsPage() {
   const router = useRouter();
@@ -17,6 +14,8 @@ export default function AppointmentsPage() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [patients, setPatients] = useState<Patient[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
 
   useEffect(() => {
     loadData();
@@ -62,28 +61,14 @@ export default function AppointmentsPage() {
     return patient ? patient.name : 'Unknown';
   };
 
-  const getStatusBadge = (status?: string) => {
-    const colors: Record<string, string> = {
-      scheduled: '#6b7280',
-      confirmed: '#3b82f6',
-      'in-progress': '#f59e0b',
-      completed: '#10b981',
-      cancelled: '#ef4444',
-      'no-show': '#dc2626',
-    };
-
-    return (
-      <span
-        className="px-2 py-1 rounded text-xs font-medium"
-        style={{
-          backgroundColor: colors[status || 'scheduled'] || '#6b7280',
-          color: 'white',
-        }}
-      >
-        {status || 'scheduled'}
-      </span>
-    );
-  };
+  const filteredAppointments = appointments.filter((a) => {
+    const patientName = getPatientName(a.patientId).toLowerCase();
+    const doctorName = getDoctorName(a.doctorId).toLowerCase();
+    const matchesSearch = patientName.includes(search.toLowerCase()) ||
+                          doctorName.includes(search.toLowerCase());
+    const matchesStatus = statusFilter === 'all' || a.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
 
   const columns: Column<Appointment>[] = [
     {
@@ -91,7 +76,7 @@ export default function AppointmentsPage() {
       label: 'Patient',
       sortable: true,
       render: (value) => (
-        <span className="font-medium" style={{ color: 'var(--color-text-primary)' }}>
+        <span style={{ fontWeight: 'bold', color: 'var(--color-text-primary)' }}>
           {getPatientName(value as string)}
         </span>
       ),
@@ -101,8 +86,8 @@ export default function AppointmentsPage() {
       label: 'Doctor',
       sortable: true,
       render: (value) => (
-        <span style={{ color: 'var(--color-text-primary)' }}>
-          {getDoctorName(value as string)}
+        <span style={{ color: 'var(--color-text-secondary)' }}>
+          Dr. {getDoctorName(value as string)}
         </span>
       ),
     },
@@ -110,55 +95,151 @@ export default function AppointmentsPage() {
       key: 'date',
       label: 'Date',
       sortable: true,
-      render: (value) => new Date(value as string).toLocaleDateString(),
+      render: (value) => (
+        <span style={{ color: 'var(--color-text-secondary)' }}>
+          {new Date(value as string).toLocaleDateString()}
+        </span>
+      ),
     },
     {
       key: 'time',
       label: 'Time',
       sortable: true,
+      render: (value) => (
+        <span style={{ color: 'var(--color-accent-primary)', fontWeight: 500 }}>
+          {value}
+        </span>
+      ),
     },
     {
       key: 'status',
       label: 'Status',
       sortable: true,
-      render: (value) => getStatusBadge(value as string),
+      render: (value) => <StatusBadge status={(value as string) || 'scheduled'} variant="appointment" />,
     },
   ];
 
   return (
-    <div className="min-h-screen p-6" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
-      <div className="max-w-7xl mx-auto space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
-              📅 Appointments
-            </h1>
-            <p style={{ color: 'var(--color-text-secondary)' }}>
-              Manage patient appointments
-            </p>
-          </div>
-          <button
-            onClick={() => router.push('/appointments/new')}
-            className="flex items-center gap-2 px-4 py-2 rounded font-medium transition-all hover:opacity-90"
+    <div>
+      <PageHeader
+        title="Appointments"
+        subtitle="Manage patient appointments"
+        icon="📅"
+        count={filteredAppointments.length}
+        actions={
+          <Link
+            href="/apps/haunted-clinic/appointments/new"
             style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '12px 24px',
+              borderRadius: '12px',
               backgroundColor: 'var(--color-accent-primary)',
               color: 'var(--color-bg-primary)',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+              fontSize: '14px',
             }}
           >
-            <Plus className="w-4 h-4" />
+            <span>➕</span>
             Book Appointment
-          </button>
-        </div>
+          </Link>
+        }
+      />
 
+      {/* Filters */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '16px',
+          marginBottom: '24px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search by patient or doctor..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{
+            flex: '1',
+            minWidth: '200px',
+            padding: '12px 16px',
+            borderRadius: '12px',
+            border: '1px solid var(--color-border-primary)',
+            backgroundColor: 'var(--color-bg-secondary)',
+            color: 'var(--color-text-primary)',
+            fontSize: '14px',
+            outline: 'none',
+          }}
+        />
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          style={{
+            padding: '12px 16px',
+            borderRadius: '12px',
+            border: '1px solid var(--color-border-primary)',
+            backgroundColor: 'var(--color-bg-secondary)',
+            color: 'var(--color-text-primary)',
+            fontSize: '14px',
+            cursor: 'pointer',
+            outline: 'none',
+          }}
+        >
+          <option value="all">All Status</option>
+          <option value="scheduled">Scheduled</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+
+      {!loading && filteredAppointments.length === 0 ? (
+        <GlowCard hover={false} glow={false}>
+          <div style={{ textAlign: 'center', padding: '48px' }}>
+            <div style={{ fontSize: '64px', marginBottom: '16px' }}>📅</div>
+            <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--color-text-primary)', marginBottom: '8px' }}>
+              {search || statusFilter !== 'all' ? 'No appointments found' : 'No appointments yet'}
+            </h3>
+            <p style={{ color: 'var(--color-text-tertiary)', marginBottom: '24px' }}>
+              {search || statusFilter !== 'all'
+                ? 'Try adjusting your search or filters'
+                : 'Book your first appointment to get started!'}
+            </p>
+            {!search && statusFilter === 'all' && (
+              <Link
+                href="/apps/haunted-clinic/appointments/new"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '12px 24px',
+                  borderRadius: '12px',
+                  backgroundColor: 'var(--color-accent-primary)',
+                  color: 'var(--color-bg-primary)',
+                  textDecoration: 'none',
+                  fontWeight: 'bold',
+                }}
+              >
+                ➕ Book Appointment
+              </Link>
+            )}
+          </div>
+        </GlowCard>
+      ) : (
         <EntityTable
-          data={appointments}
+          data={filteredAppointments}
           columns={columns}
           loading={loading}
-          onEdit={(appointment) => router.push(`/appointments/${appointment.$id}/edit`)}
+          onView={(appointment) => router.push(`/apps/haunted-clinic/appointments/${appointment.$id}`)}
+          onEdit={(appointment) => router.push(`/apps/haunted-clinic/appointments/${appointment.$id}/edit`)}
           onDelete={handleDelete}
-          emptyMessage="No appointments found. Book your first appointment!"
+          emptyMessage="No appointments found"
         />
-      </div>
+      )}
     </div>
   );
 }

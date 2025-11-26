@@ -38,7 +38,7 @@ export default function PatientDetailPage() {
     if (confirm(`Remove ${patient?.name} from patient records?`)) {
       try {
         await deletePatient(id);
-        router.push('/patients');
+        router.push('/apps/haunted-clinic/patients');
       } catch (error) {
         console.error('Failed to delete patient:', error);
         alert('Failed to delete patient');
@@ -71,7 +71,7 @@ export default function PatientDetailPage() {
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <button
-            onClick={() => router.push('/patients')}
+            onClick={() => router.push('/apps/haunted-clinic/patients')}
             className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-80"
             style={{
               backgroundColor: 'var(--color-bg-secondary)',
@@ -84,7 +84,7 @@ export default function PatientDetailPage() {
 
           <div className="flex gap-2">
             <button
-              onClick={() => router.push(`/patients/${id}/edit`)}
+              onClick={() => router.push(`/apps/haunted-clinic/patients/${id}/edit`)}
               className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-90"
               style={{
                 backgroundColor: 'var(--color-accent-primary)',

@@ -90,7 +90,7 @@ export default function TeamDetailPage({ params }: { params: { id: string } }) {
             </div>
             <div className="flex gap-2">
               <button
-                onClick={() => router.push(`/teams/${team.$id}/edit`)}
+                onClick={() => router.push(`/apps/cursed-arena/teams/${team.$id}/edit`)}
                 className="p-2 rounded"
                 style={{ backgroundColor: 'var(--color-bg-tertiary)', color: 'var(--color-text-primary)' }}
               >
@@ -98,7 +98,7 @@ export default function TeamDetailPage({ params }: { params: { id: string } }) {
               </button>
               <button
                 onClick={() => {
-                  if (confirm('Banish this team?')) router.push('/teams');
+                  if (confirm('Banish this team?')) router.push('/apps/cursed-arena/teams');
                 }}
                 className="p-2 rounded"
                 style={{ backgroundColor: 'var(--color-status-error)', color: 'white' }}

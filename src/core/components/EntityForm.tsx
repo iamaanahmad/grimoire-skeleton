@@ -1,159 +1,174 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { EntityDefinition } from '../types/entity';
 import { FieldInput } from './FieldInput';
 import { validateEntity, validateField } from '../lib/validators';
 import { Loader2 } from 'lucide-react';
 
 interface EntityFormProps {
-    entityDef: EntityDefinition;
-    initialValues?: any;
-    onSubmit: (values: any) => Promise<void>;
-    mode: 'create' | 'edit';
+  entityDef: EntityDefinition;
+  initialValues?: any;
+  onSubmit: (values: any) => Promise<void>;
+  mode: 'create' | 'edit';
 }
 
 export const EntityForm: React.FC<EntityFormProps> = ({
-    entityDef,
-    initialValues = {},
-    onSubmit,
-    mode,
+  entityDef,
+  initialValues,
+  onSubmit,
+  mode,
 }) => {
-    const [values, setValues] = useState<any>(initialValues);
-    const [errors, setErrors] = useState<Record<string, string>>({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [generalError, setGeneralError] = useState<string | null>(null);
+  const [values, setValues] = useState<any>(() => initialValues || {});
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [generalError, setGeneralError] = useState<string | null>(null);
+  const initializedRef = useRef(false);
 
-    useEffect(() => {
-        if (initialValues) {
-            setValues(initialValues);
-        }
-    }, [initialValues]);
+  // Only sync initialValues on first load or when it has actual data (edit mode)
+  useEffect(() => {
+    if (initialValues && Object.keys(initialValues).length > 0 && !initializedRef.current) {
+      setValues(initialValues);
+      initializedRef.current = true;
+    }
+  }, [initialValues]);
 
-    const handleChange = (name: string, value: any) => {
-        setValues((prev: any) => ({ ...prev, [name]: value }));
+  const handleChange = (name: string, value: any) => {
+    setValues((prev: any) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
 
-        // Clear error for this field when modified
-        if (errors[name]) {
-            setErrors((prev) => {
-                const newErrors = { ...prev };
-                delete newErrors[name];
-                return newErrors;
-            });
-        }
-    };
+  const handleBlur = (name: string) => {
+    const field = entityDef.fields[name];
+    if (field) {
+      const error = validateField(values[name], field);
+      if (error) {
+        setErrors((prev) => ({ ...prev, [name]: error }));
+      }
+    }
+  };
 
-    const handleBlur = (name: string) => {
-        const field = entityDef.fields[name];
-        if (field) {
-            const error = validateField(values[name], field);
-            if (error) {
-                setErrors((prev) => ({ ...prev, [name]: error }));
-            }
-        }
-    };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setGeneralError(null);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setGeneralError(null);
+    const validationErrors = validateEntity(values, entityDef.fields);
 
-        // Validate all fields
-        const validationErrors = validateEntity(values, entityDef.fields);
+    if (entityDef.validate) {
+      const customResult = entityDef.validate(values);
+      if (customResult !== true) {
+        setGeneralError(typeof customResult === 'string' ? customResult : 'Validation failed');
+        return;
+      }
+    }
 
-        // Custom entity validation
-        if (entityDef.validate) {
-            const customResult = entityDef.validate(values);
-            if (customResult !== true) {
-                setGeneralError(typeof customResult === 'string' ? customResult : 'Validation failed');
-                return;
-            }
-        }
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
+    setIsSubmitting(true);
+    try {
+      await onSubmit(values);
+    } catch (err: any) {
+      setGeneralError(err.message || 'An error occurred while saving.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-        setIsSubmitting(true);
-        try {
-            await onSubmit(values);
-        } catch (err: any) {
-            setGeneralError(err.message || 'An error occurred while saving.');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+  return (
+    <form onSubmit={handleSubmit} className="w-full">
+      <div
+        className="w-full rounded-2xl p-8 md:p-10"
+        style={{
+          backgroundColor: '#12121a',
+          border: '1px solid #2d2d44',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+        }}
+      >
+        {/* Form Fields - 2 column grid on larger screens */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {Object.entries(entityDef.fields).map(([name, field]) => (
+            <div key={name} className={field.type === 'boolean' ? 'md:col-span-2' : ''}>
+              <FieldInput
+                name={name}
+                field={field}
+                value={values[name]}
+                onChange={(val) => handleChange(name, val)}
+                onBlur={() => handleBlur(name)}
+                error={errors[name]}
+              />
+            </div>
+          ))}
+        </div>
 
-    return (
-        <form 
-            onSubmit={handleSubmit} 
-            className="space-y-6 max-w-2xl mx-auto p-6 rounded-lg"
+        {/* Error Message */}
+        {generalError && (
+          <div
+            className="mt-8 p-4 rounded-xl flex items-center gap-3"
             style={{
-                backgroundColor: 'var(--color-bg-secondary)',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'var(--color-border-primary)',
-                boxShadow: 'calc(var(--effect-shadows) * 0 0 30px rgba(0, 0, 0, 0.5))',
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              border: '1px solid rgba(239, 68, 68, 0.3)',
+              color: '#ef4444',
             }}
+            role="alert"
+          >
+            <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span>{generalError}</span>
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div
+          className="mt-10 pt-8 flex flex-col sm:flex-row justify-end gap-4"
+          style={{ borderTop: '1px solid #2d2d44' }}
         >
-            <div className="space-y-4">
-                {Object.entries(entityDef.fields).map(([name, field]) => (
-                    <FieldInput
-                        key={name}
-                        name={name}
-                        field={field}
-                        value={values[name]}
-                        onChange={(val) => handleChange(name, val)}
-                        onBlur={() => handleBlur(name)}
-                        error={errors[name]}
-                    />
-                ))}
-            </div>
-
-            {generalError && (
-                <div 
-                    className="p-3 rounded text-sm animate-pulse"
-                    style={{
-                        backgroundColor: 'color-mix(in srgb, var(--color-status-error) 10%, transparent)',
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'color-mix(in srgb, var(--color-status-error) 30%, transparent)',
-                        color: 'var(--color-status-error)',
-                    }}
-                >
-                    {generalError}
-                </div>
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="px-8 py-3 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
+            style={{
+              backgroundColor: '#1a1a2e',
+              color: '#a0a0b0',
+              border: '1px solid #2d2d44',
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="px-10 py-3 rounded-xl font-bold transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{
+              backgroundColor: '#00ff88',
+              color: '#0a0a0f',
+              boxShadow: '0 0 20px rgba(0, 255, 136, 0.4)',
+            }}
+          >
+            {isSubmitting ? (
+              <span className="flex items-center justify-center gap-2">
+                <Loader2 className="w-5 h-5 animate-spin" />
+                {mode === 'create' ? 'Summoning...' : 'Saving...'}
+              </span>
+            ) : (
+              <span>{mode === 'create' ? '✨ Summon' : '💾 Save Changes'}</span>
             )}
-
-            <div className="pt-4 flex justify-end">
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="relative px-6 py-2 font-medium rounded disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{
-                        backgroundColor: 'var(--color-accent-primary)',
-                        color: 'var(--color-bg-primary)',
-                        transition: `all var(--animation-duration-normal) var(--animation-easing)`,
-                    }}
-                    onMouseEnter={(e) => {
-                        if (!isSubmitting) {
-                            e.currentTarget.style.filter = 'brightness(1.2)';
-                            e.currentTarget.style.boxShadow = `0 0 15px color-mix(in srgb, var(--color-accent-glow) ${100 * (1)}%, transparent)`;
-                        }
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.filter = 'brightness(1)';
-                        e.currentTarget.style.boxShadow = 'none';
-                    }}
-                >
-                    {isSubmitting ? (
-                        <span className="flex items-center">
-                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                            {mode === 'create' ? 'Summoning...' : 'Enchanting...'}
-                        </span>
-                    ) : (
-                        <span>{mode === 'create' ? 'Summon Entity' : 'Enchant Entity'}</span>
-                    )}
-                </button>
-            </div>
-        </form>
-    );
+          </button>
+        </div>
+      </div>
+    </form>
+  );
 };

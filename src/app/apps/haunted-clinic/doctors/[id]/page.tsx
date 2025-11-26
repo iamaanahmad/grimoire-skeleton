@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { Doctor } from '@/types/haunted-clinic/entities';
 import { fetchDoctor, deleteDoctor } from '@/lib/haunted-clinic/api';
-import { ArrowLeft, Edit, Trash2 } from 'lucide-react';
+import { ArrowLeft, Edit, Trash2, Calendar } from 'lucide-react';
 
 export default function DoctorDetailPage() {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function DoctorDetailPage() {
     if (confirm(`Remove Dr. ${doctor?.name} from the clinic?`)) {
       try {
         await deleteDoctor(id);
-        router.push('/doctors');
+        router.push('/apps/haunted-clinic/doctors');
       } catch (error) {
         console.error('Failed to delete doctor:', error);
         alert('Failed to delete doctor');
@@ -71,7 +71,7 @@ export default function DoctorDetailPage() {
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <button
-            onClick={() => router.push('/doctors')}
+            onClick={() => router.push('/apps/haunted-clinic/doctors')}
             className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-80"
             style={{
               backgroundColor: 'var(--color-bg-secondary)',
@@ -84,7 +84,18 @@ export default function DoctorDetailPage() {
 
           <div className="flex gap-2">
             <button
-              onClick={() => router.push(`/doctors/${id}/edit`)}
+              onClick={() => router.push(`/apps/haunted-clinic/doctors/${id}/schedule`)}
+              className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-90"
+              style={{
+                backgroundColor: 'var(--color-bg-tertiary)',
+                color: 'var(--color-text-primary)',
+              }}
+            >
+              <Calendar className="w-4 h-4" />
+              Schedule
+            </button>
+            <button
+              onClick={() => router.push(`/apps/haunted-clinic/doctors/${id}/edit`)}
               className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-90"
               style={{
                 backgroundColor: 'var(--color-accent-primary)',

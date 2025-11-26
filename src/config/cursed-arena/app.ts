@@ -12,27 +12,27 @@ export const appConfig = {
   navigation: [
     {
       label: 'Dashboard',
-      path: '/',
+      path: '/apps/cursed-arena',
       icon: '🏠',
     },
     {
       label: 'Tournaments',
-      path: '/tournaments',
+      path: '/apps/cursed-arena/tournaments',
       icon: '🏆',
     },
     {
       label: 'Teams',
-      path: '/teams',
+      path: '/apps/cursed-arena/teams',
       icon: '⚔️',
     },
     {
       label: 'Players',
-      path: '/players',
+      path: '/apps/cursed-arena/players',
       icon: '🎮',
     },
     {
       label: 'Matches',
-      path: '/matches',
+      path: '/apps/cursed-arena/matches',
       icon: '⚡',
     },
   ],

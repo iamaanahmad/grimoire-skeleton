@@ -12,22 +12,22 @@ export const appConfig = {
   navigation: [
     {
       label: 'Dashboard',
-      path: '/',
+      path: '/apps/haunted-clinic',
       icon: '📊',
     },
     {
       label: 'Doctors',
-      path: '/doctors',
+      path: '/apps/haunted-clinic/doctors',
       icon: '👨‍⚕️',
     },
     {
       label: 'Patients',
-      path: '/patients',
+      path: '/apps/haunted-clinic/patients',
       icon: '🧑‍🦱',
     },
     {
       label: 'Appointments',
-      path: '/appointments',
+      path: '/apps/haunted-clinic/appointments',
       icon: '📅',
     },
   ],

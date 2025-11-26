@@ -88,7 +88,7 @@ export default function MatchesPage() {
             </p>
           </div>
           <button
-            onClick={() => router.push('/matches/new')}
+            onClick={() => router.push('/apps/cursed-arena/matches/new')}
             className="flex items-center gap-2 px-4 py-2 rounded font-medium"
             style={{
               backgroundColor: 'var(--color-accent-primary)',
@@ -104,7 +104,8 @@ export default function MatchesPage() {
           data={matches}
           columns={columns}
           loading={loading}
-          onEdit={(match) => router.push(`/matches/${match.$id}/edit`)}
+          onView={(match) => router.push(`/apps/cursed-arena/matches/${match.$id}`)}
+          onEdit={(match) => router.push(`/apps/cursed-arena/matches/${match.$id}/edit`)}
           onDelete={async (match) => {
             if (confirm('Banish this match?')) {
               await loadMatches();

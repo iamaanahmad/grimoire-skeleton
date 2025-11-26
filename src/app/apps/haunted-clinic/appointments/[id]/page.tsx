@@ -50,7 +50,7 @@ export default function AppointmentDetailPage() {
     if (confirm('Cancel this appointment?')) {
       try {
         await deleteAppointment(id);
-        router.push('/appointments');
+        router.push('/apps/haunted-clinic/appointments');
       } catch (error) {
         console.error('Failed to delete appointment:', error);
         alert('Failed to delete appointment');
@@ -116,7 +116,7 @@ export default function AppointmentDetailPage() {
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <button
-            onClick={() => router.push('/appointments')}
+            onClick={() => router.push('/apps/haunted-clinic/appointments')}
             className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-80"
             style={{
               backgroundColor: 'var(--color-bg-secondary)',
@@ -129,7 +129,7 @@ export default function AppointmentDetailPage() {
 
           <div className="flex gap-2">
             <button
-              onClick={() => router.push(`/appointments/${id}/edit`)}
+              onClick={() => router.push(`/apps/haunted-clinic/appointments/${id}/edit`)}
               className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-90"
               style={{
                 backgroundColor: 'var(--color-accent-primary)',
