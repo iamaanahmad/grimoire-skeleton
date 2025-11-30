@@ -4,6 +4,12 @@
 
 **Built for the Kiroween Hackathon** - Showcasing Kiro's full capabilities through specs, hooks, and vibe coding.
 
+## 🌐 Live Demo
+
+**[https://grimoire-skeleton.appwrite.network/](https://grimoire-skeleton.appwrite.network/)**
+
+Experience the full platform live with real Appwrite backend integration!
+
 ## 🌟 What is Grimoire Skeleton?
 
 Grimoire Skeleton is a Kiro-native framework that demonstrates how to build reusable, production-ready systems. Define your entities once, and watch as complete CRUD interfaces materialize before your eyes.

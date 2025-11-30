@@ -12,15 +12,11 @@ export default function EditAppointmentPage() {
   const router = useRouter();
   const params = useParams();
   const id = params.id as string;
-
   const [data, setData] = useState<Appointment | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchAppointment(id)
-      .then(setData)
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    fetchAppointment(id).then(setData).catch(console.error).finally(() => setLoading(false));
   }, [id]);
 
   const handleSubmit = async (values: any) => {
@@ -30,56 +26,58 @@ export default function EditAppointmentPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#0a0a0f] py-8 px-4">
-        <div className="w-full max-w-5xl mx-auto animate-pulse space-y-6">
-          <div className="h-10 w-24 bg-[#1a1a2e] rounded-lg" />
-          <div className="h-96 bg-[#12121a] rounded-2xl" />
+      <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#0a0a0f' }}>
+        <div className="animate-pulse text-center">
+          <div className="w-20 h-20 rounded-full mx-auto mb-4" style={{ backgroundColor: '#1a1a2e' }} />
+          <div className="h-8 w-48 rounded mx-auto mb-2" style={{ backgroundColor: '#1a1a2e' }} />
         </div>
-      </main>
+      </div>
     );
   }
 
   if (!data) {
     return (
-      <main className="min-h-screen bg-[#0a0a0f] py-8 px-4 flex items-center justify-center">
+      <div className="min-h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#0a0a0f' }}>
         <div className="text-center">
           <div className="text-6xl mb-4">👻</div>
-          <h2 className="text-2xl font-bold text-white mb-2">Appointment Not Found</h2>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: '#ffffff' }}>Appointment Not Found</h2>
           <button
             onClick={() => router.push('/apps/haunted-clinic/appointments')}
-            className="mt-4 px-6 py-3 bg-[#00ff88] text-[#0a0a0f] rounded-lg font-bold"
+            className="mt-4 px-6 py-3 rounded-xl font-bold"
+            style={{ backgroundColor: '#00ff88', color: '#0a0a0f' }}
           >
             Back to Appointments
           </button>
         </div>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0f] py-8 px-4">
-      <div className="w-full max-w-5xl mx-auto">
+    <div className="min-h-screen w-full" style={{ backgroundColor: '#0a0a0f' }}>
+      <div className="w-full px-6 py-8">
         <button
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-gray-400 
-                     bg-[#12121a] border border-[#2d2d44] rounded-lg
-                     hover:text-white hover:border-[#3d3d54] transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-lg transition-all duration-200 hover:scale-105"
+          style={{ backgroundColor: '#1a1a2e', color: '#a0a0b0', border: '1px solid #2d2d44' }}
         >
           <ArrowLeft className="w-4 h-4" />
           Back
         </button>
 
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 mb-4 
-                          bg-[#12121a] border-2 border-[#00ff88] rounded-full">
-            <span className="text-3xl">📅</span>
+        <div className="text-center mb-12">
+          <div
+            className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full"
+            style={{ backgroundColor: '#1a1a2e', border: '3px solid #00ff88', boxShadow: '0 0 30px rgba(0, 255, 136, 0.3)' }}
+          >
+            <span className="text-4xl">📅</span>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Edit Appointment</h1>
-          <p className="text-gray-400">Update appointment details</p>
+          <h1 className="text-4xl font-bold mb-3" style={{ color: '#ffffff' }}>Edit Appointment</h1>
+          <p className="text-lg" style={{ color: '#808090' }}>Update appointment details</p>
         </div>
 
         <EntityForm entityDef={appointment} initialValues={data} onSubmit={handleSubmit} mode="edit" />
       </div>
-    </main>
+    </div>
   );
 }
