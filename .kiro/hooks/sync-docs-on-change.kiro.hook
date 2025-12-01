@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "name": "Sync Documentation",
+  "description": "Watches TypeScript source files, components, configs, and related files for changes and prompts the agent to update relevant documentation in README.md or the apps' README files.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/tsconfig.json",
+      "**/next.config.ts",
+      "**/tailwind.config.ts",
+      "**/package.json",
+      "src/**/*.css"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A source file has been modified. Review the changes and determine if documentation needs to be updated. Check the root README.md, ARCHITECTURE_OVERVIEW.md, DEVELOPMENT.md, apps/cursed-arena/README.md, and apps/haunted-clinic/README.md for any sections that may need updates based on the changed file. Update documentation to reflect new features, API changes, component modifications, or configuration updates. Keep documentation accurate and in sync with the codebase."
+  }
+}

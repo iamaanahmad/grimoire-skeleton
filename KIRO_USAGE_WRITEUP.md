@@ -217,25 +217,50 @@ Steering docs are like having a senior developer looking over Kiro's shoulder. T
 
 ## 5. MCP Integration
 
-### Appwrite MCP (Planned)
+### Appwrite MCP Server
 
-We planned to create a custom MCP server for Appwrite integration:
+We integrated the Appwrite MCP server to extend Kiro's capabilities for backend development:
 
-- Query collections during development
-- Test auth flows without leaving Kiro
-- Manage permissions
-- Seed data
+**Configuration**: Added to `.kiro/settings/mcp.json`
 
-**Status**: Due to time constraints, we used the Appwrite SDK directly, but the MCP would have streamlined development further.
+**What It Enabled**:
 
-### Impact of MCP Concept
+- **Direct database operations** - Create collections, manage attributes without leaving Kiro
+- **Auth flow testing** - Test authentication and permissions directly from the IDE
+- **Backend setup automation** - Set up entire Appwrite backend structure through Kiro
+- **Real-time data inspection** - Query collections and documents during development
+- **No context switching** - Everything from database design to frontend code in one place
 
-Even without implementing custom MCP, the ability to extend Kiro's capabilities influenced our architecture. We designed the entity system to be MCP-friendly - a future MCP could:
+### Workflow Improvements
 
-- Auto-generate Appwrite collection schemas from entity definitions
-- Sync permissions
-- Generate seed data
-- Monitor API performance
+**Before MCP**:
+1. Open Appwrite Console in browser
+2. Create database manually
+3. Create collections manually
+4. Define attributes one by one
+5. Set up permissions
+6. Switch back to IDE
+7. Write frontend code
+
+**With MCP**:
+1. Ask Kiro: "Create an Appwrite database called 'grimoire' with a 'tournaments' collection"
+2. Kiro uses MCP tools to set up everything
+3. Continue coding immediately
+
+**Time Saved**: ~3-4 hours on backend setup across both apps
+
+### Most Valuable MCP Features
+
+1. **Database creation** - Instant database provisioning
+2. **Collection management** - Define schemas conversationally
+3. **Permission testing** - Verify auth rules without manual testing
+4. **Data seeding** - Populate test data through Kiro
+
+### Key Insight
+
+MCP transformed Kiro from a code generator into a full-stack development environment. Being able to say "set up the backend for tournaments with these fields" and have Kiro handle both the Appwrite configuration AND the frontend code was game-changing.
+
+Without MCP, we would have spent hours switching between the Appwrite Console and IDE. With it, we stayed in flow state and let Kiro orchestrate the entire stack.
 
 ## Development Workflow
 
