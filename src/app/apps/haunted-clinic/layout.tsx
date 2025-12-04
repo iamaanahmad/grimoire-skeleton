@@ -64,7 +64,15 @@ export default function HauntedClinicLayout({
               textDecoration: 'none',
             }}
           >
-            <span style={{ fontSize: '28px' }}>🏥</span>
+            <img 
+              src="/grimoire.png" 
+              alt="Grimoire" 
+              style={{ 
+                width: '32px', 
+                height: '32px', 
+                objectFit: 'contain'
+              }}
+            />
             <span
               style={{
                 fontSize: '20px',

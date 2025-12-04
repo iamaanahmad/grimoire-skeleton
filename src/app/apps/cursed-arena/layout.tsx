@@ -61,7 +61,16 @@ export default function CursedArenaLayout({ children }: { children: React.ReactN
               textDecoration: 'none',
             }}
           >
-            <span style={{ fontSize: '28px', filter: 'drop-shadow(0 0 8px var(--color-accent-glow))' }}>⚔️</span>
+            <img 
+              src="/grimoire.png" 
+              alt="Grimoire" 
+              style={{ 
+                width: '32px', 
+                height: '32px', 
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 0 8px var(--color-accent-glow))'
+              }}
+            />
             <span
               style={{
                 fontSize: '20px',

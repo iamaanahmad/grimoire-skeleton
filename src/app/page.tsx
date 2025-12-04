@@ -114,7 +114,16 @@ export default function Home() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '32px', animation: mounted ? 'float 3s ease-in-out infinite' : 'none' }}>💀</span>
+            <img 
+              src="/grimoire.png" 
+              alt="Grimoire" 
+              style={{ 
+                width: '40px', 
+                height: '40px', 
+                objectFit: 'contain',
+                animation: mounted ? 'float 3s ease-in-out infinite' : 'none'
+              }}
+            />
             <span
               style={{
                 fontSize: '24px',
@@ -593,7 +602,15 @@ export default function Home() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '32px' }}>💀</span>
+            <img 
+              src="/grimoire.png" 
+              alt="Grimoire" 
+              style={{ 
+                width: '32px', 
+                height: '32px', 
+                objectFit: 'contain'
+              }}
+            />
             <span style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>
               Grimoire Skeleton
             </span>
