@@ -81,7 +81,7 @@ export function EntityTable<T extends { $id: string }>({
             {/* Desktop Table View */}
             <div 
                 data-testid="desktop-table" 
-                className="hidden md:block overflow-x-auto rounded-lg glass-panel"
+                className="hidden md:block overflow-x-auto rounded-xl glass-panel"
                 style={{
                     borderWidth: '1px',
                     borderStyle: 'solid',
@@ -100,7 +100,7 @@ export function EntityTable<T extends { $id: string }>({
                             {columns.map((col) => (
                                 <th
                                     key={String(col.key)}
-                                    className={`px-6 py-4 font-medium ${col.sortable ? 'cursor-pointer select-none' : ''}`}
+                                    className={`px-5 md:px-6 py-4 md:py-5 font-medium ${col.sortable ? 'cursor-pointer select-none' : ''}`}
                                     style={{
                                         transition: `color var(--animation-duration-fast) var(--animation-easing)`,
                                     }}
@@ -131,7 +131,7 @@ export function EntityTable<T extends { $id: string }>({
                                     </div>
                                 </th>
                             ))}
-                            {(onEdit || onDelete || onView) && <th className="px-6 py-4 text-right">Actions</th>}
+                            {(onEdit || onDelete || onView) && <th className="px-5 md:px-6 py-4 md:py-5 text-right">Actions</th>}
                         </tr>
                     </thead>
                     <tbody 
@@ -162,14 +162,14 @@ export function EntityTable<T extends { $id: string }>({
                                 {columns.map((col) => (
                                     <td 
                                         key={`${item.$id}-${String(col.key)}`} 
-                                        className="px-6 py-4"
+                                        className="px-5 md:px-6 py-4 md:py-5"
                                         style={{ color: 'var(--color-text-primary)' }}
                                     >
                                         {col.render ? col.render(item[col.key], item) : String(item[col.key] ?? '')}
                                     </td>
                                 ))}
                                 {(onEdit || onDelete || onView) && (
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-5 md:px-6 py-4 md:py-5 text-right">
                                         <ActionButtons
                                             onView={onView ? () => onView(item) : undefined}
                                             onEdit={onEdit ? () => onEdit(item) : undefined}
@@ -188,7 +188,7 @@ export function EntityTable<T extends { $id: string }>({
                 {paginatedData.map((item) => (
                     <div 
                         key={item.$id} 
-                        className="p-4 rounded-lg space-y-3"
+                        className="p-5 rounded-xl space-y-3"
                         style={{
                             borderWidth: '1px',
                             borderStyle: 'solid',

@@ -59,7 +59,7 @@ export function GlowCard({
       className={className}
       onClick={onClick}
       style={{
-        padding: '24px',
+        padding: '20px',
         borderRadius: '20px',
         backgroundColor: 'color-mix(in srgb, var(--color-bg-secondary) 60%, transparent)',
         border: `1px solid ${variantStyle.borderColor}`,

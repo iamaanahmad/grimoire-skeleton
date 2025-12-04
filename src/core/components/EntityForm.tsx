@@ -84,17 +84,21 @@ export const EntityForm: React.FC<EntityFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
+    <form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto">
       <div
-        className="w-full rounded-2xl p-8 md:p-10"
+        className="w-full rounded-2xl"
         style={{
           backgroundColor: '#12121a',
           border: '1px solid #2d2d44',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+          padding: '32px',
         }}
       >
         {/* Form Fields - 2 column grid on larger screens */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2"
+          style={{ gap: '24px' }}
+        >
           {Object.entries(entityDef.fields).map(([name, field]) => (
             <div key={name} className={field.type === 'boolean' ? 'md:col-span-2' : ''}>
               <FieldInput
@@ -112,8 +116,11 @@ export const EntityForm: React.FC<EntityFormProps> = ({
         {/* Error Message */}
         {generalError && (
           <div
-            className="mt-8 p-4 rounded-xl flex items-center gap-3"
+            className="flex items-center gap-3"
             style={{
+              marginTop: '32px',
+              padding: '16px 20px',
+              borderRadius: '12px',
               backgroundColor: 'rgba(239, 68, 68, 0.1)',
               border: '1px solid rgba(239, 68, 68, 0.3)',
               color: '#ef4444',
@@ -133,14 +140,20 @@ export const EntityForm: React.FC<EntityFormProps> = ({
 
         {/* Action Buttons */}
         <div
-          className="mt-10 pt-8 flex flex-col sm:flex-row justify-end gap-4"
-          style={{ borderTop: '1px solid #2d2d44' }}
+          className="flex flex-col sm:flex-row justify-end"
+          style={{ 
+            marginTop: '40px', 
+            paddingTop: '32px', 
+            borderTop: '1px solid #2d2d44',
+            gap: '16px',
+          }}
         >
           <button
             type="button"
             onClick={() => window.history.back()}
-            className="px-8 py-3 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
+            className="rounded-xl font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
+              padding: '14px 32px',
               backgroundColor: '#1a1a2e',
               color: '#a0a0b0',
               border: '1px solid #2d2d44',
@@ -151,8 +164,9 @@ export const EntityForm: React.FC<EntityFormProps> = ({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-10 py-3 rounded-xl font-bold transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="rounded-xl font-bold transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             style={{
+              padding: '14px 40px',
               backgroundColor: '#00ff88',
               color: '#0a0a0f',
               boxShadow: '0 0 20px rgba(0, 255, 136, 0.4)',

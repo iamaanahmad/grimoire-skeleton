@@ -120,7 +120,7 @@ export default function AppointmentsPage() {
   ];
 
   return (
-    <div>
+    <div style={{ padding: '8px 0' }}>
       <PageHeader
         title="Appointments"
         subtitle="Manage patient appointments"
@@ -133,13 +133,15 @@ export default function AppointmentsPage() {
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              padding: '12px 24px',
+              padding: '14px 28px',
               borderRadius: '12px',
               backgroundColor: 'var(--color-accent-primary)',
               color: 'var(--color-bg-primary)',
               textDecoration: 'none',
               fontWeight: 'bold',
               fontSize: '14px',
+              boxShadow: '0 0 20px rgba(0, 255, 136, 0.3)',
+              transition: 'all 0.2s ease',
             }}
           >
             <span>➕</span>
@@ -153,7 +155,8 @@ export default function AppointmentsPage() {
         style={{
           display: 'flex',
           gap: '16px',
-          marginBottom: '24px',
+          marginBottom: '28px',
+          marginTop: '24px',
           flexWrap: 'wrap',
         }}
       >
@@ -165,23 +168,24 @@ export default function AppointmentsPage() {
           style={{
             flex: '1',
             minWidth: '200px',
-            padding: '12px 16px',
+            padding: '14px 18px',
             borderRadius: '12px',
-            border: '1px solid var(--color-border-primary)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            border: '2px solid #2d2d44',
+            backgroundColor: '#1a1a2e',
             color: 'var(--color-text-primary)',
             fontSize: '14px',
             outline: 'none',
+            transition: 'border-color 0.2s ease',
           }}
         />
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
           style={{
-            padding: '12px 16px',
+            padding: '14px 18px',
             borderRadius: '12px',
-            border: '1px solid var(--color-border-primary)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            border: '2px solid #2d2d44',
+            backgroundColor: '#1a1a2e',
             color: 'var(--color-text-primary)',
             fontSize: '14px',
             cursor: 'pointer',

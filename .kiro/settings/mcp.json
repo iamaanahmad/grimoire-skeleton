@@ -21,7 +21,7 @@
       ],
       "env": {
         "APPWRITE_PROJECT_ID": "grimoire-kiro",
-        "APPWRITE_API_KEY": "apiKeyHERE",
+        "APPWRITE_API_KEY": "standard_e7765b1a8de40fafaa80ee7c78b82017bbd73eb503de085e88981a3df3a8e355f190c742465506d0373d901966c12c798f022e109678ce062265cbd667f3a2e21acb80ea5f79e7cdcf47bae2654ac7bed8d644c534500595c9575f49e67b82a16715b733bdd5adc7c62acaa809c635f8bd49c4edcf8ecef6b2de5d685a97dee6",
         "APPWRITE_ENDPOINT": "https://fra.cloud.appwrite.io/v1"
       },
       "disabled": false,

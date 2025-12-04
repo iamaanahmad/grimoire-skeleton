@@ -16,28 +16,49 @@ export default function NewPatientPage() {
 
   return (
     <div className="min-h-screen w-full" style={{ backgroundColor: '#0a0a0f' }}>
-      <div className="w-full px-6 py-8">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+        {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-lg transition-all duration-200 hover:scale-105"
-          style={{ backgroundColor: '#1a1a2e', color: '#a0a0b0', border: '1px solid #2d2d44' }}
+          className="inline-flex items-center gap-3 rounded-xl transition-all duration-200 hover:scale-105"
+          style={{
+            padding: '12px 20px',
+            marginBottom: '32px',
+            backgroundColor: '#1a1a2e',
+            color: '#00ff88',
+            border: '1px solid #00ff88',
+            boxShadow: '0 0 15px rgba(0, 255, 136, 0.2)',
+          }}
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back
+          <ArrowLeft className="w-5 h-5" />
+          <span style={{ fontWeight: '600' }}>Back</span>
         </button>
 
-        <div className="text-center mb-12">
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <div
-            className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full"
-            style={{ backgroundColor: '#1a1a2e', border: '3px solid #00ff88', boxShadow: '0 0 30px rgba(0, 255, 136, 0.3)' }}
+            className="inline-flex items-center justify-center rounded-full"
+            style={{
+              width: '80px',
+              height: '80px',
+              marginBottom: '24px',
+              backgroundColor: '#1a1a2e',
+              border: '3px solid #00ff88',
+              boxShadow: '0 0 30px rgba(0, 255, 136, 0.3)',
+            }}
           >
-            <span className="text-4xl">🧑‍🦱</span>
+            <span style={{ fontSize: '36px' }}>🧑‍🦱</span>
           </div>
-          <h1 className="text-4xl font-bold mb-3" style={{ color: '#ffffff' }}>Add Patient</h1>
-          <p className="text-lg" style={{ color: '#808090' }}>Register a new patient (synthetic data only)</p>
+          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '12px', color: '#ffffff' }}>
+            Add Patient
+          </h1>
+          <p style={{ fontSize: '16px', color: '#808090' }}>Register a new patient (synthetic data only)</p>
         </div>
 
-        <EntityForm entityDef={patient} onSubmit={handleSubmit} mode="create" />
+        {/* Form Container */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <EntityForm entityDef={patient} onSubmit={handleSubmit} mode="create" />
+        </div>
       </div>
     </div>
   );

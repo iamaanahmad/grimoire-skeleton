@@ -4,7 +4,7 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { Appointment, Doctor, Patient } from '@/types/haunted-clinic/entities';
 import { fetchAppointment, deleteAppointment, fetchDoctor, fetchPatient, updateAppointment } from '@/lib/haunted-clinic/api';
@@ -93,8 +93,8 @@ export default function AppointmentDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen p-6" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
-        <div className="max-w-4xl mx-auto">
+      <div style={{ minHeight: '100vh', backgroundColor: 'var(--color-bg-primary)', padding: '24px' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <p style={{ color: 'var(--color-text-secondary)' }}>Loading...</p>
         </div>
       </div>
@@ -103,8 +103,8 @@ export default function AppointmentDetailPage() {
 
   if (!appointment) {
     return (
-      <div className="min-h-screen p-6" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
-        <div className="max-w-4xl mx-auto">
+      <div style={{ minHeight: '100vh', backgroundColor: 'var(--color-bg-primary)', padding: '24px' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <p style={{ color: 'var(--color-text-secondary)' }}>Appointment not found</p>
         </div>
       </div>
@@ -112,28 +112,34 @@ export default function AppointmentDetailPage() {
   }
 
   return (
-    <div className="min-h-screen p-6" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div className="flex items-center justify-between">
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--color-bg-primary)', padding: '24px 16px' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        {/* Header with Back Button and Actions */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
           <button
             onClick={() => router.push('/apps/haunted-clinic/appointments')}
-            className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-80"
+            className="inline-flex items-center gap-3 rounded-xl transition-all duration-200 hover:scale-105"
             style={{
-              backgroundColor: 'var(--color-bg-secondary)',
-              color: 'var(--color-text-primary)',
+              padding: '12px 20px',
+              backgroundColor: '#1a1a2e',
+              color: '#00ff88',
+              border: '1px solid #00ff88',
+              boxShadow: '0 0 15px rgba(0, 255, 136, 0.2)',
             }}
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Appointments
+            <ArrowLeft className="w-5 h-5" />
+            <span style={{ fontWeight: '600' }}>Back</span>
           </button>
 
-          <div className="flex gap-2">
+          <div style={{ display: 'flex', gap: '12px' }}>
             <button
               onClick={() => router.push(`/apps/haunted-clinic/appointments/${id}/edit`)}
-              className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-xl transition-all duration-200 hover:scale-105"
               style={{
+                padding: '12px 24px',
                 backgroundColor: 'var(--color-accent-primary)',
                 color: 'var(--color-bg-primary)',
+                fontWeight: '600',
               }}
             >
               <Edit className="w-4 h-4" />
@@ -141,10 +147,12 @@ export default function AppointmentDetailPage() {
             </button>
             <button
               onClick={handleDelete}
-              className="flex items-center gap-2 px-4 py-2 rounded transition-all hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-xl transition-all duration-200 hover:scale-105"
               style={{
+                padding: '12px 24px',
                 backgroundColor: '#dc2626',
                 color: 'white',
+                fontWeight: '600',
               }}
             >
               <Trash2 className="w-4 h-4" />
@@ -153,15 +161,18 @@ export default function AppointmentDetailPage() {
           </div>
         </div>
 
+        {/* Main Card */}
         <div
-          className="p-6 rounded-lg"
           style={{
-            backgroundColor: 'var(--color-bg-secondary)',
-            border: '1px solid var(--color-border)',
+            padding: '32px',
+            borderRadius: '20px',
+            backgroundColor: '#12121a',
+            border: '1px solid #2d2d44',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
           }}
         >
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
+            <h1 style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>
               📅 Appointment Details
             </h1>
             <AppointmentStatusManager
@@ -170,61 +181,61 @@ export default function AppointmentDetailPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px' }}>
+            <div style={{ padding: '20px', backgroundColor: '#1a1a2e', borderRadius: '12px', border: '1px solid #2d2d44' }}>
+              <h3 style={{ fontSize: '12px', fontWeight: '600', marginBottom: '8px', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Patient
               </h3>
-              <p style={{ color: 'var(--color-text-primary)' }}>{patient?.name || 'Unknown'}</p>
+              <p style={{ color: 'var(--color-text-primary)', fontSize: '16px', fontWeight: '500' }}>{patient?.name || 'Unknown'}</p>
             </div>
 
-            <div>
-              <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>
+            <div style={{ padding: '20px', backgroundColor: '#1a1a2e', borderRadius: '12px', border: '1px solid #2d2d44' }}>
+              <h3 style={{ fontSize: '12px', fontWeight: '600', marginBottom: '8px', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Doctor
               </h3>
-              <p style={{ color: 'var(--color-text-primary)' }}>{doctor?.name || 'Unknown'}</p>
+              <p style={{ color: 'var(--color-text-primary)', fontSize: '16px', fontWeight: '500' }}>Dr. {doctor?.name || 'Unknown'}</p>
             </div>
 
-            <div>
-              <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>
+            <div style={{ padding: '20px', backgroundColor: '#1a1a2e', borderRadius: '12px', border: '1px solid #2d2d44' }}>
+              <h3 style={{ fontSize: '12px', fontWeight: '600', marginBottom: '8px', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Date
               </h3>
-              <p style={{ color: 'var(--color-text-primary)' }}>
+              <p style={{ color: 'var(--color-text-primary)', fontSize: '16px', fontWeight: '500' }}>
                 {new Date(appointment.date).toLocaleDateString()}
               </p>
             </div>
 
-            <div>
-              <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>
+            <div style={{ padding: '20px', backgroundColor: '#1a1a2e', borderRadius: '12px', border: '1px solid #2d2d44' }}>
+              <h3 style={{ fontSize: '12px', fontWeight: '600', marginBottom: '8px', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Time
               </h3>
-              <p style={{ color: 'var(--color-text-primary)' }}>{appointment.time}</p>
+              <p style={{ color: '#00ff88', fontSize: '16px', fontWeight: '600' }}>{appointment.time}</p>
             </div>
 
-            <div>
-              <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>
+            <div style={{ padding: '20px', backgroundColor: '#1a1a2e', borderRadius: '12px', border: '1px solid #2d2d44' }}>
+              <h3 style={{ fontSize: '12px', fontWeight: '600', marginBottom: '8px', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Duration
               </h3>
-              <p style={{ color: 'var(--color-text-primary)' }}>
+              <p style={{ color: 'var(--color-text-primary)', fontSize: '16px', fontWeight: '500' }}>
                 {appointment.duration || 30} minutes
               </p>
             </div>
 
             {appointment.reason && (
-              <div className="md:col-span-2">
-                <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>
+              <div style={{ padding: '20px', backgroundColor: '#1a1a2e', borderRadius: '12px', border: '1px solid #2d2d44', gridColumn: 'span 2' }}>
+                <h3 style={{ fontSize: '12px', fontWeight: '600', marginBottom: '8px', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   Reason for Visit
                 </h3>
-                <p style={{ color: 'var(--color-text-primary)' }}>{appointment.reason}</p>
+                <p style={{ color: 'var(--color-text-primary)', fontSize: '16px' }}>{appointment.reason}</p>
               </div>
             )}
 
             {appointment.notes && (
-              <div className="md:col-span-2">
-                <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>
+              <div style={{ padding: '20px', backgroundColor: '#1a1a2e', borderRadius: '12px', border: '1px solid #2d2d44', gridColumn: 'span 2' }}>
+                <h3 style={{ fontSize: '12px', fontWeight: '600', marginBottom: '8px', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   Notes
                 </h3>
-                <p style={{ color: 'var(--color-text-primary)' }}>{appointment.notes}</p>
+                <p style={{ color: 'var(--color-text-primary)', fontSize: '16px' }}>{appointment.notes}</p>
               </div>
             )}
           </div>

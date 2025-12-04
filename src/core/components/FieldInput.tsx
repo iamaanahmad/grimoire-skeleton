@@ -22,7 +22,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
 }) => {
   const inputStyles: React.CSSProperties = {
     width: '100%',
-    padding: '14px 16px',
+    padding: '16px 18px',
     fontSize: '16px',
     lineHeight: '1.5',
     backgroundColor: '#1a1a2e',
@@ -180,13 +180,13 @@ export const FieldInput: React.FC<FieldInputProps> = ({
   };
 
   return (
-    <div className="w-full">
+    <div style={{ width: '100%' }}>
       {field.type !== 'boolean' && (
         <label
           htmlFor={name}
           style={{
             display: 'block',
-            marginBottom: '8px',
+            marginBottom: '12px',
             fontSize: '14px',
             fontWeight: '600',
             color: error ? '#ef4444' : '#e0e0f0',
@@ -206,7 +206,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
         <p
           id={`${name}-error`}
           style={{
-            marginTop: '8px',
+            marginTop: '10px',
             fontSize: '14px',
             color: '#ef4444',
             display: 'flex',
